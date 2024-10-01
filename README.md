@@ -1,4 +1,4 @@
-# <p align="center">GradEX</p>
+# <p align="center">Projeto</p>
 
 <br>
 
