@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- !!FORMULARIO DE LOGIN PROVISORIO, TEM QUE ADAPTAR PRA COMO TA NO PROTOTIPO!! -->
+</head>
+<body>
+    <div class="container mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Nome de usuário:</label>
+            <input type="text" name="username" required>
+        
+            <label for="password">Senha:</label>
+            <input type="password" name="password" required>
+        
+            <button type="submit">Cadastrar</button>
+        </form>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        
+    </div>
+</body>
+</html>
