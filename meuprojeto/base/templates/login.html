@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>LOGIN</h1>
-        <form method="POST" action="{% url 'login' %}">
+        <h1 class="title">LOGIN</h1>
+        <form method="POST" action="{% url 'login' %}" class="form">
             {% csrf_token %}
             <div class="form-group">
                 <input type="text" id="username" name="username" required placeholder="Usuário" />
@@ -19,19 +19,18 @@
             <div class="form-group">
                 <input type="password" id="password" name="password" required placeholder="Senha" />
             </div>
-            <button type="submit" class="btn"><a>Entrar</a></button>  <!-- Botão para enviar o formulário -->
+            <button type="submit" class="btn">Confirmar</button>
         </form>
+        
+        {% if messages %}
+            <div class="alert">
+                {% for message in messages %}
+                    <p class="alert-msg">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <a href="{% url 'entrar' %}" class="back-btn"></a>
     </div>
-    <br>
-    {% if messages %}
-    <div class="alert">
-        {% for message in messages %}
-            <p class="alert-msg">{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <a href="{% url 'entrar' %}" class="back-btn"></a>
-
 </body>
 </html>

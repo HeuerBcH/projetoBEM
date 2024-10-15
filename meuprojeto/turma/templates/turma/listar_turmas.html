@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Turmas</title>
+</head>
+<body>
+    <h1>Lista de Turmas</h1>
+    <div class="card-container">
+        {% for turma in turmas %}
+            <div class="card">
+                <h3>{{ turma.nome }}</h3>
+                <p><strong>Horário:</strong> {{ turma.horario }}</p>
+                <p><strong>Dias:</strong> {{ turma.dias }}</p>
+            </div>
+        {% empty %}
+            <div class="card">
+                <p>Nenhuma turma cadastrada.</p>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'criar_turma' %}">Criar Nova Turma</a>
+</body>
+</html>

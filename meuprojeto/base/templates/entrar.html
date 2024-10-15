@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Entrar</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'entrar_login_cadastro.css' %}">
 </head>
 <body>
-    <h1>TESKI</h1>
-    <a href="{% url 'login' %}" class="btn btn-primary">Entrar como administrador</a>
-    <p class="mt-3 text-center lexend-text">Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se aqui</a></p>
+    <div class="container">
+        <h1 class="title">TESKI</h1>
+
+        <a href="{% url 'login' %}" class="btn-entrar">ENTRAR COMO ADMINISTRADOR</a>
+        <p class="mt-3">Não tem uma conta? <a href="{% url 'cadastro' %}" class="link">Cadastre-se aqui</a></p>
+    </div>
 </body>
 </html>
