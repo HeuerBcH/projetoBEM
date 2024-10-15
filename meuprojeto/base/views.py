@@ -29,7 +29,7 @@ def login_user(request):
         
         else:
             # Se a autenticação falhar, exibe uma mensagem de erro
-            messages.error(request, ("Ocorreu um erro, se você não possuir uma conta, registre-se, caso contrário, verifique suas informações."))
+            messages.error(request, ("Ocorreu um erro, registre-se ou verifique suas informações."))
             return redirect('login')
     else:
         # Se a requisição não for do tipo POST, renderiza a página de login sem erros
@@ -66,4 +66,11 @@ def cadastro_user(request):
 def logout_user(request):
     logout(request) # Faz o logout do usuário
     messages.success(request, "Você foi desconectado com sucesso.")
-    return redirect('login')
+    return redirect('entrar')
+
+def entrar(request):
+    # Se o usuário já estiver autenticado, redireciona para a home
+    if request.user.is_authenticated:
+        return redirect('home')  # Redireciona para a página inicial
+
+    return render(request, 'entrar.html')

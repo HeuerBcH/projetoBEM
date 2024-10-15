@@ -22,6 +22,6 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='base/login/', permanent=False)), # Redireciona a raiz para a página de login, ou seja, a primeira pagina de acesso sera a de login
+    path('', RedirectView.as_view(url='base/entrar/', permanent=False)), # Redireciona a raiz para a página de login, ou seja, a primeira pagina de acesso sera a de login
     path('base/', include('base.urls')),  # Inclui as URLs do app 'base'
 ]
