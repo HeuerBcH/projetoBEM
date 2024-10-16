@@ -21,12 +21,20 @@
             </div>
             <button type="submit" class="btn">Confirmar</button>
         </form>
-        
+
+        <!-- Botão para redirecionar à página de login -->
+        <div class="form-group">
+            <a href="{% url 'login' %}">
+                <button class="btn">Ir para Login</button>
+            </a>
+        </div>
+
         {% if messages %}
             {% for message in messages %}
                 <div class="alert">{{ message }}</div>
             {% endfor %}
         {% endif %}
+        
         <a href="{% url 'entrar' %}" class="back-btn"></a>
     </div>
 </body>

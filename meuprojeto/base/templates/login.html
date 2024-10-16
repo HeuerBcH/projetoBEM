@@ -22,6 +22,14 @@
             <button type="submit" class="btn">Confirmar</button>
         </form>
         
+    
+        <!-- Botão para redirecionar à página de cadastro -->
+        <div class="form-group">
+            <a href="{% url 'cadastro' %}">
+                <button class="btn">Ir para Cadastro</button>
+            </a>
+        </div>
+
         {% if messages %}
             <div class="alert">
                 {% for message in messages %}
@@ -29,6 +37,7 @@
                 {% endfor %}
             </div>
         {% endif %}
+
         
         <a href="{% url 'entrar' %}" class="back-btn"></a>
     </div>
