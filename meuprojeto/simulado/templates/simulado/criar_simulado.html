@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Criar Simulado
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-box">
+        <h1>Criar Novo Simulado</h1>
+
+        <!-- Formulário para criar o simulado -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Campo para o nome do simulado -->
+            <div class="form-group">
+                <label for="id_nome">Nome do Simulado</label>
+                {{ form.nome }} <!-- Renderiza o campo de texto para o nome do simulado -->
+            </div>
+
+            <!-- Campo para a data de realização -->
+            <div class="form-group">
+                <label for="id_data_realizacao">Data de Realização</label>
+                {{ form.data_realizacao }} <!-- Renderiza o campo de seleção de data -->
+            </div>
+
+            <!-- Campo para escolher a matéria (português ou matemática) -->
+            <div class="form-group">
+                <label for="id_materia">Matéria</label>
+                {{ form.materia }} <!-- Renderiza o campo de seleção para matéria -->
+            </div>
+
+            <!-- Campo para escolher os alunos participantes -->
+            <div class="form-group">
+                <label for="id_alunos_participantes">Alunos Participantes</label>
+                {{ form.alunos_participantes }} <!-- Renderiza o campo de seleção múltipla para alunos -->
+            </div>
+
+            <!-- Botão para salvar o simulado -->
+            <button type="submit" class="btn btn-primary">Salvar Simulado</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

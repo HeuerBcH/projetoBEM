@@ -1,0 +1,78 @@
+/* Centralizar o formulário na página */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Adicionar padding para garantir que fique responsivo */
+}
+
+.form-box {
+    background-color: #FFFFFF;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px; /* Aumentar o tamanho máximo para adequar ao formulário */
+    width: 100%;
+}
+
+/* Estilos dos campos do formulário */
+.form-box h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%; /* Garante que cada campo ocupe a largura total */
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px; /* Aumentar padding para melhorar a visibilidade */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botão de envio */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Ajustar para o botão ocupar a largura total */
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para dispositivos menores */
+@media (max-width: 768px) {
+    .form-box {
+        padding: 20px;
+    }
+}
