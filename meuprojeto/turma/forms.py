@@ -21,3 +21,7 @@ class TurmaForm(forms.ModelForm):
             if dia not in dias_validos:
                 raise forms.ValidationError(f"O dia '{dia}' não é válido. Os dias válidos são: {', '.join(dias_validos)}.")
         return dias
+class TurmaForm(forms.ModelForm):
+    class Meta:
+        model = Turma
+        fields = ['nome', 'horario_inicio', 'horario_fim', 'dias', 'professor', 'alunos']
