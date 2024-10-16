@@ -1,0 +1,41 @@
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li>
+            <span class="logo">logo</span>
+            <span class="text">TESKI</span>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon">👨‍🎓</span>
+                <span class="text">Alunos</span>
+                <span class="arrow">&#x25BC;</span> <!-- Setinha para baixo -->
+            </a>
+            <ul class="dropdown">
+                <li><a href="#">Ata de Alunos</a></li>
+                <li><a href="#">Adicionar Alunos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon">📚</span>
+                <span class="text">Turmas</span>
+                <span class="arrow">&#x25BC;</span> <!-- Setinha para baixo -->
+            </a>
+            <ul class="dropdown">
+                <li><a href="{% url 'listar_turmas' %}" class="view-turmas">Ver Turmas</a></li>
+                <li><a href="#">Adicionar Turma</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon">📝</span>
+                <span class="text">Simulados</span>
+                <span class="arrow">&#x25BC;</span> <!-- Setinha para baixo -->
+            </a>
+            <ul class="dropdown">
+                <li><a href="#">Criar Novo Simulado</a></li>
+                <li><a href="#">Registro de Simulados</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
