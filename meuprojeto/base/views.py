@@ -5,34 +5,41 @@ from aluno.models import Aluno  # Importe o modelo Aluno do app aluno
 from django.contrib import messages  # Importa o sistema de mensagens para exibir feedbacks aos usuários
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 @login_required
 def home(request):
     return render(request, 'home.html')
 
 # Função para gerenciar o login de usuários
+from django.core.exceptions import ObjectDoesNotExist
+
+
 def login_user(request):
-    # Verifica se o usuário já está autenticado
     if request.user.is_authenticated:
-        return redirect('home')  # Redireciona para a página inicial
+        return redirect('home')
 
-    if request.method == 'POST':  # Verifica se o tipo de requisição é do tipo POST (significa que o usuário está enviando dados)
-        username1 = request.POST['username']  # Obtém o nome de usuário do formulário
-        password1 = request.POST['password']  # Obtém a senha do formulário
+    if request.method == 'POST':
+        username1 = request.POST['username']
+        password1 = request.POST['password']
 
-        user = authenticate(request, username=username1, password=password1)  # Autentica as informações de login
+        user = authenticate(request, username=username1, password=password1)
         if user is not None:
-            login(request, user)  # Faz o login
-
-            usuario_atual = Usuario.objects.get(user=user)  # Obtém o perfil do usuário associado ao usuário autenticado
-            return redirect('home')  # Redireciona para a página inicial após o login
-
+            try:
+                usuario_atual = Usuario.objects.get(user=user)
+            except ObjectDoesNotExist:
+                # Mensagem de erro aparece apenas se o perfil não for encontrado
+                messages.error(request, "Perfil de usuário não encontrado.")
+                return redirect('login')
+            
+            # Faz login e redireciona se tudo estiver correto
+            login(request, user)
+            return redirect('home')
         else:
-            # Se a autenticação falhar, exibe uma mensagem de erro
-            messages.error(request, ("Ocorreu um erro, registre-se ou verifique suas informações."))
+            # Mensagem de erro só aparece em caso de falha de login
+            messages.error(request, "Nome de usuário ou senha incorretos.")
             return redirect('login')
     else:
-        # Se a requisição não for do tipo POST, renderiza a página de login sem erros
         return render(request, 'login.html', {})
 
 # Função para gerenciar o cadastro de usuários
@@ -63,9 +70,10 @@ def cadastro_user(request):
         return render(request, 'cadastro.html', {})
     
 def logout_user(request):
-    logout(request) # Faz o logout do usuário
+    logout(request)  # Faz o logout do usuário
+    # Mensagem de sucesso após logout
     messages.success(request, "Você foi desconectado com sucesso.")
-    return redirect('entrar')
+    return redirect('login')
 
 def entrar(request):
     # Se o usuário já estiver autenticado, redireciona para a home

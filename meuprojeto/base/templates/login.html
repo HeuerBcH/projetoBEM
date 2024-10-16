@@ -23,15 +23,28 @@
         </form>
 
         {% if messages %}
-            <div class="alert">
-                {% for message in messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}">
                     <p class="alert-msg">{{ message }}</p>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         {% endif %}
 
-        
         <a href="{% url 'entrar' %}" class="back-btn"></a>
     </div>
+
+    <script>
+        // Função para remover mensagens após 3 segundos
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.opacity = '0';  // Transição para desaparecer
+                setTimeout(function() {
+                    alert.style.display = 'none';  // Remove o elemento do DOM após a transição
+                }, 500);  // Duração da transição
+            });
+        }, 3000);  // Tempo até desaparecer: 3 segundos (3000ms)
+    </script>
+    
 </body>
 </html>
