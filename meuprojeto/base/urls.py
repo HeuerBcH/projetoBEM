@@ -12,5 +12,4 @@ urlpatterns = [
     path('cadastro/', views.cadastro_user, name='cadastro'),  # URL para a página de cadastro
     path('logout/', views.logout_user, name='logout'), # URL para logout
     path('entrar/', views.entrar, name='entrar'), # URL para pagina de entrada de usuario
-    
 ]
