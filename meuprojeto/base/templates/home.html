@@ -3,16 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
 <body>
-    <p>Olá, {{ user.username }}!</p>
+    <div class="wrapper">
+        <!-- Menu lateral -->
+        <nav class="sidebar">
+            <div class="logo-section">
+                <span class="logo">LOGO</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="toggleSubmenu('alunos-submenu')">
+                        <i class="icon-user"></i> alunos
+                    </a>
+                    <ul class="submenu" id="alunos-submenu">
+                        <li><a href="#">ata de alunos</a></li>
+                        <li><a href="#">adicionar aluno</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="toggleSubmenu('turmas-submenu')">
+                        <i class="icon-class"></i> turmas
+                    </a>
+                    <ul class="submenu" id="turmas-submenu">
+                        <li><a href="#">ata de turmas</a></li>
+                        <li><a href="#">adicionar turma</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="toggleSubmenu('simulados-submenu')">
+                        <i class="icon-simulado"></i> simulados
+                    </a>
+                    <ul class="submenu" id="simulados-submenu">
+                        <li><a href="#">ata de simulados</a></li>
+                        <li><a href="#">adicionar simulado</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
-    <!-- Botão de Logout -->
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Sair</button>
-    </form>
-    <a href="{% url 'listar_turmas' %}" class="btn btn-primary">Lista de Turmas</a>
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Top bar -->
+            <div class="top-bar">
+                <button class="menu-toggle"><i class="icon-menu"></i></button>
+                <div class="right-icons">
+                    <i class="icon-settings"></i>
+                    <i class="icon-user-circle"></i>
+                </div>
+            </div>
+
+            <!-- Área central com a mensagem de logado -->
+            <div class="login-info">
+                <p>VOCÊ ESTÁ LOGADO</p>
+                <h2>{{ request.user.username }}</h2>
+                <div class="user-icon">
+                    <i class="icon-user-large"></i>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubmenu(id) {
+            var submenu = document.getElementById(id);
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
