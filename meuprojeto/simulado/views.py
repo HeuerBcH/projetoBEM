@@ -11,7 +11,11 @@ def criar_simulado(request):
         if form.is_valid():
             simulado = form.save(commit=False)
             simulado.save()
-            
+            # Redirecione ou faça algo após salvar
+            return redirect('/criar_simulado_pagina/')  # Redirecionar após salvar
+
+        else:
+            print(form.errors)  # Verifique os erros do formulário para depuração
     else:
         form = SimuladoForm()
 
