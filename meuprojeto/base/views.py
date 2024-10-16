@@ -14,6 +14,9 @@ def home(request):
 # Função para gerenciar o login de usuários
 from django.core.exceptions import ObjectDoesNotExist
 
+@login_required
+def criar_simulado_pagina(request):
+    return render(request, 'criar_simulado.html')
 
 def login_user(request):
     if request.user.is_authenticated:
