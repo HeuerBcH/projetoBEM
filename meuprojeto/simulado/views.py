@@ -4,6 +4,7 @@ from django.contrib import messages  # Importa o sistema de mensagens para exibi
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from .models import Simulado
 
 def criar_simulado(request):
     if request.method == 'POST':
@@ -23,3 +24,7 @@ def criar_simulado(request):
 
 def criar_simulado_pagina(request):
     return render(request, 'simulado/criar_simulado.html')
+
+def listar_simulados(request):
+    simulados = Simulado.objects.all()  # Busca todas as turmas no banco de dados
+    return render(request, 'simulado/listar_simulados.html', {'simulados': simulados})

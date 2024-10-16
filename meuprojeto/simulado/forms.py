@@ -16,8 +16,3 @@ class SimuladoForm(forms.ModelForm):
             ], attrs={'class': 'form-control'}),
             'data_inicio': forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
         }
-
-    def __init__(self, *args, **kwargs):
-        super(SimuladoForm, self).__init__(*args, **kwargs)
-        self.fields['turma'].queryset = Turma.objects.all()  # Exibe todas as turmas cadastradas
-        self.fields['turma'].widget.attrs.update({'class': 'form-control'})

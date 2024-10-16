@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Listar Simulados
+{% endblock %}
+
+{% block content %}
+    <h1>Simulados</h1>
+    <div class="card-container">
+        {% for simulado in simulados %}
+            <div class="card">
+                <h3>{{ simulado.nome }}</h3>
+                <p><strong>Matéria:</strong> {{ simulado.materia }}</p>
+                <p><strong>Data e Hora de Início:</strong> {{ simulado.data_inicio }}</p>
+                <p><strong>Turma:</strong> {{ simulado.turma.nome }}</p>
+            </div>
+        {% empty %}
+            <div class="card">
+                <p>Nenhum simulado cadastrado.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
