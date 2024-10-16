@@ -9,7 +9,8 @@ def criar_simulado(request):
     if request.method == 'POST':
         form = SimuladoForm(request.POST)
         if form.is_valid():
-            form.save()
+            simulado = form.save(commit=False)
+            simulado.save()
             
     else:
         form = SimuladoForm()
