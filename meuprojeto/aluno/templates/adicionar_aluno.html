@@ -1,0 +1,87 @@
+{% block content %}
+<h2>Adicionar Aluno</h2>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <div>
+        <label for="id_nome_aluno">{{ form.nome_aluno.label }}</label><br>
+        {{ form.nome_aluno }}<br>
+        {{ form.nome_aluno.errors }}
+    </div>
+
+    <div>
+        <label for="id_matricula">{{ form.matricula.label }}</label><br>
+        {{ form.matricula }}<br>
+        {{ form.matricula.errors }}
+    </div>
+
+    <div>
+        <label for="id_data_nascimento">{{ form.data_nascimento.label }}</label><br>
+        {{ form.data_nascimento }}<br>
+        {{ form.data_nascimento.errors }}
+    </div>
+
+    <div>
+        <label>Selecione as Turmas:</label><br>
+        {{ form.turmas }}<br>
+        {{ form.turmas.errors }}
+    </div>
+
+    <div>
+        <label for="id_nome_responsavel">{{ form.nome_responsavel.label }}</label><br>
+        {{ form.nome_responsavel }}<br>
+        {{ form.nome_responsavel.errors }}
+    </div>
+
+    <div>
+        <label for="id_numero_responsavel">{{ form.numero_responsavel.label }}</label><br>
+        {{ form.numero_responsavel }}<br>
+        {{ form.numero_responsavel.errors }}
+    </div>
+
+    <div>
+        <label for="id_email_responsavel">{{ form.email_responsavel.label }}</label><br>
+        {{ form.email_responsavel }}<br>
+        {{ form.email_responsavel.errors }}
+    </div>
+
+    <button type="submit">Adicionar</button>
+</form>
+
+<script>
+function formatDate(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length >= 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2); // Adiciona barra após os dias
+    }
+    if (value.length >= 5) {
+        value = value.slice(0, 5) + '/' + value.slice(5); // Adiciona barra após os meses
+    }
+    input.value = value; // Atualiza o valor do input
+}
+
+function formatPhoneNumber(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length >= 2) {
+        value = '(' + value.slice(0, 2) + ') ' + value.slice(2); // Adiciona parênteses
+    }
+    if (value.length > 14) {
+        value = value.slice(0, 14); // Limita a 14 caracteres
+    }
+
+    input.value = value; // Atualiza o valor do input
+}
+
+// Adiciona eventos de input
+document.getElementById('id_data_nascimento').addEventListener('input', function() {
+    formatDate(this);
+});
+document.getElementById('id_numero_responsavel').addEventListener('input', function() {
+    formatPhoneNumber(this);
+});
+</script>
+
+{% endblock %}
