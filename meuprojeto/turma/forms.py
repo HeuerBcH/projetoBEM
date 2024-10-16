@@ -24,4 +24,4 @@ class TurmaForm(forms.ModelForm):
 class TurmaForm(forms.ModelForm):
     class Meta:
         model = Turma
-        fields = ['nome', 'horario_inicio', 'horario_fim', 'dias', 'professor', 'alunos']
+        fields = ['nome', 'horario_inicio', 'horario_fim', 'dias', 'professor',]
