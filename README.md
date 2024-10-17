@@ -25,16 +25,16 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 ## 🚀 Nossa Equipe
 
-- **Silvio Fittipaldi** (CC)
-- **Bernardo Heuer** (CC) 
-- **Luís Felipe** (CC)
-- **Lucas Santos** (CC)
-- **Erick Belo** (CC)
-- **Eduardo Roma** (CC)
-- **Rodrigo Barreto** (CC)
-- **Amanda Lima** (Design)
-- **Maria Betânia**(Design)
-- **Beatriz Bogater**(Design)
-- **João Gabriel**(Design)
+- **Silvio Fittipaldi** (sfm@cesar.school)(CC)
+- **Bernardo Heuer** (bchg@cesar.school)(CC) 
+- **Luís Felipe** (lfpb@cesar.school)(CC)
+- **Lucas Santos** (lsc7@cesar.school)(CC)
+- **Erick Belo** (eab2@cesar.school)(CC)
+- **Eduardo Roma** (erca@cesar.school)(CC)
+- **Rodrigo Barreto** (rbnm@cesar.school)(CC)
+- **Amanda Lima** (amsl@cesar.schhol)(Design)
+- **Maria Betânia** (mbsraa@cesar.school)(Design)
+- **Beatriz Bogater** (btb@cesar.school)(Design)
+- **João Gabriel** (jglx@cesar.school)(Design)
 
 ---
