@@ -12,7 +12,11 @@
 
 ## 🔍 Visão Geral
 
-O projeto TESKI foi criado com o intuito de facilitar a logística no setor educacional, propondo uma abordagem diferente e mais eficiente para o gerenciamento de dados e processos.
+O projeto TESKI foi desenvolvido para o Bem Curso Preparatório com o objetivo de gerenciar de forma eficiente alunos, turmas e notas. Utilizando o framework Django, o TESKI permite à administração escolar acompanhar o progresso dos estudantes, organizar turmas e atribuir notas de maneira automatizada e simplificada.
+
+Essa aplicação foi criada para atender às necessidades específicas do cliente, proporcionando uma solução moderna que otimiza o gerenciamento de dados e a logística do curso, facilitando o controle sobre o desempenho acadêmico e a organização interna.
+
+
 
 ---
 
