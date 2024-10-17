@@ -1,17 +1,67 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Turma</title>
-</head>
-<body>
-    <h1>Criar Nova Turma</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        {{ form.as_p }}
+{% extends 'base.html' %}
 
-        <button type="submit">Criar Turma</button>
-    </form>
-</body>
-</html>
+{% block title %}
+    Criar Nova Turma
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <div class="form-box">
+            <h1>Criar Nova Turma</h1>
+            
+            <!-- Formulário para criar a turma -->
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <!-- Campo para Nome da Turma -->
+                <div class="form-group">
+                    <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                    <input type="text" id="{{ form.nome.id_for_label }}" name="{{ form.nome.name }}" class="form-control" value="{{ form.nome.value|default:'' }}" required>
+                    {% if form.nome.errors %}
+                        <div class="text-danger">{{ form.nome.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Horário de Início -->
+                <div class="form-group">
+                    <label for="{{ form.horario_inicio.id_for_label }}">{{ form.horario_inicio.label }}</label>
+                    <input type="time" id="{{ form.horario_inicio.id_for_label }}" name="{{ form.horario_inicio.name }}" class="form-control" value="{{ form.horario_inicio.value|default:'' }}" required>
+                    {% if form.horario_inicio.errors %}
+                        <div class="text-danger">{{ form.horario_inicio.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Horário de Fim -->
+                <div class="form-group">
+                    <label for="{{ form.horario_fim.id_for_label }}">{{ form.horario_fim.label }}</label>
+                    <input type="time" id="{{ form.horario_fim.id_for_label }}" name="{{ form.horario_fim.name }}" class="form-control" value="{{ form.horario_fim.value|default:'' }}" required>
+                    {% if form.horario_fim.errors %}
+                        <div class="text-danger">{{ form.horario_fim.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Nome do Professor -->
+                <div class="form-group">
+                    <label for="{{ form.professor.id_for_label }}">{{ form.professor.label }}</label>
+                    <input type="text" id="{{ form.professor.id_for_label }}" name="{{ form.professor.name }}" class="form-control" value="{{ form.professor.value|default:'' }}">
+                    {% if form.professor.errors %}
+                        <div class="text-danger">{{ form.professor.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Dias -->
+                <div class="form-group">
+                    <label for="{{ form.dias.id_for_label }}">{{ form.dias.label }}</label>
+                    <input type="text" id="{{ form.dias.id_for_label }}" name="{{ form.dias.name }}" class="form-control" value="{{ form.dias.value|default:'' }}" required>
+                    {% if form.dias.errors %}
+                        <div class="text-danger">{{ form.dias.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" class="btn btn-primary">Criar Turma</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

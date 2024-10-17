@@ -16,12 +16,22 @@ class TurmaForm(forms.ModelForm):
     def clean_dias(self):
         dias = self.cleaned_data.get('dias')
         dias_validos = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
+        if not dias:
+            raise forms.ValidationError("Os dias da semana são obrigatórios.")
         dias_lista = [dia.strip() for dia in dias.split(',')]
         for dia in dias_lista:
             if dia not in dias_validos:
                 raise forms.ValidationError(f"O dia '{dia}' não é válido. Os dias válidos são: {', '.join(dias_validos)}.")
         return dias
-class TurmaForm(forms.ModelForm):
-    class Meta:
-        model = Turma
-        fields = ['nome', 'horario_inicio', 'horario_fim', 'dias', 'professor',]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        nome = cleaned_data.get("nome")
+        professor = cleaned_data.get("professor")
+
+        if not nome:
+            self.add_error('nome', "O nome da turma é obrigatório.")
+        if not professor:
+            self.add_error('professor', "O nome do professor é obrigatório.")
+
+        return cleaned_data

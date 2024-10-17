@@ -6,7 +6,7 @@
 {% block content %}
 <div class="form-container">
     <div class="form-box">
-        <h1>Criar Novo Simulado</h1>
+        <h1>Criar Novo Simulado</h1> <!-- Adicionei a classe form-title -->
 
         <!-- Formulário para criar o simulado -->
         <form method="post">
@@ -32,10 +32,11 @@
             </div>
 
             <div class="form-group">
-                <label for="id_turma">Turma</label>
-                <select name="turma" id="id_turma" class="form-control">
-                    {% for turma in turmas %}
-                        <option value="{{ turma.id }}">{{ turma.nome }}</option>
+
+                <label for="turma">Turma</label>
+                <select id="turma" name="turma" class="form-control">
+                    {% for turma in form.fields.turma.queryset %}
+                        <option value="{{ turma.id }}" {% if turma.id == form.turma.value %}selected{% endif %}>{{ turma.nome }}</option>
                     {% endfor %}
                 </select>
             </div>
