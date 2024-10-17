@@ -22,6 +22,10 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 ## ✅ Status Report 1
 
+Diagrama de classes UML:
+
+https://lucid.app/lucidchart/64ce876e-c782-4bbc-a0b0-6c0d9b860745/edit?viewport_loc=-10894%2C-14924%2C4706%2C3187%2C0_0&invitationId=inv_d674a5f9-99f4-4faf-9a31-6cac564701f4
+
 
 ## 🚀 Nossa Equipe
 
