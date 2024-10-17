@@ -1,0 +1,20 @@
+{% block content %}
+<h2>Lista de Alunos</h2>
+<div class="alunos-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for aluno in alunos %}
+    <div class="aluno-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; width: 250px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);">
+        <h3>{{ aluno.nome_aluno }}</h3>
+        <p><strong>Matrícula:</strong> {{ aluno.matricula|yesno:"Matriculado,Não Matriculado" }}</p>
+        <p><strong>Nascimento:</strong> {{ aluno.data_nascimento }}</p>
+        <p><strong>Colocação Geral:</strong> {{ aluno.colocacao_geral }}</p>
+        <p><strong>Turmas:</strong> 
+            {% for turma in aluno.turmas.all %}
+                <span style="background-color: #f0f0f0; padding: 3px 5px; border-radius: 4px; margin-right: 5px;">{{ turma.nome }}</span>
+            {% endfor %}
+        </p>
+    </div>
+    {% empty %}
+    <p>Nenhum aluno cadastrado.</p>
+    {% endfor %}
+</div>
+{% endblock %}

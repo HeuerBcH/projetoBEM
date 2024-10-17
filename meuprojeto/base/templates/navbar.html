@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <button id="menu-toggle" class="menu-button">☰</button>
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i> <!-- Ícone de logout -->
+            </button>
+        </form>
+    </div>
+    <div class="navbar-actions">
+        <span class="username">Olá, {{ user.username|upper }}</span> <!-- Nome do usuário em maiúsculas -->
+    </div>
+</nav>

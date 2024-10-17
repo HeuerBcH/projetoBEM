@@ -1,0 +1,41 @@
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li>
+            <span class="logo">logo</span>
+            <span class="text">TESKI</span>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <span class="text">Alunos</span>
+                <span class="arrow">&#x25BC;</span>
+            </a>
+            <ul class="dropdown">
+                <li><a href="{% url 'listar_alunos' %}"><span class="icon"><i class="fas fa-angle-right"></i></span>Ata de Alunos</a></li>
+                <li><a href="{% url 'adicionar_aluno' %}"><span class="icon"><i class="fas fa-angle-right"></i></span>Adicionar Alunos</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon"><i class="fas fa-book"></i></span>
+                <span class="text">Turmas</span>
+                <span class="arrow">&#x25BC;</span>
+            </a>
+            <ul class="dropdown">
+                <li><a href="{% url 'listar_turmas' %}"><span class="icon"><i class="fas fa-angle-right"></i></span>Ver Turmas</a></li>
+                <li><a href="{% url 'criar_turma' %}"><span class="icon"><i class="fas fa-angle-right"></i></span>Adicionar Turma</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                <span class="text">Simulados</span>
+                <span class="arrow">&#x25BC;</span>
+            </a>
+            <ul class="dropdown">
+                <li><a href="{% url 'criar_simulado_pagina' %}"><span class="icon"><i class="fas fa-angle-right"></i></span>Criar Novo Simulado</a></li>
+                <li><a href="#"><span class="icon"><i class="fas fa-angle-right"></i></span>Registro de Simulados</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

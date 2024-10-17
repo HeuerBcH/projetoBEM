@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/entrar_login_cadastro.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">LOGIN</h1>
+        <form method="POST" action="{% url 'login' %}" class="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="username" name="username" required placeholder="Usuário" />
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder="Senha" />
+            </div>
+            <button type="submit" class="btn">Confirmar</button>
+        </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}">
+                    <p class="alert-msg">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <a href="{% url 'entrar' %}" class="back-btn"></a>
+    </div>
+
+    <script>
+        // Função para remover mensagens após 3 segundos
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.opacity = '0';  // Transição para desaparecer
+                setTimeout(function() {
+                    alert.style.display = 'none';  // Remove o elemento do DOM após a transição
+                }, 500);  // Duração da transição
+            });
+        }, 3000);  // Tempo até desaparecer: 3 segundos (3000ms)
+    </script>
+    
+</body>
+</html>

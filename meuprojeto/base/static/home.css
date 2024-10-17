@@ -1,0 +1,174 @@
+/* Estilos gerais */
+body {
+    margin: 0;
+    font-family: 'Lexend', sans-serif;
+    background-color: #F5F5F5;
+}
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+/* Estilos da barra lateral */
+.sidebar {
+    background-color: #fff;
+    width: 220px;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin-bottom: 20px;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-link:hover {
+    color: #007bff;
+}
+
+.submenu {
+    list-style: none;
+    padding: 10px 0 10px 20px;
+    display: none; /* Submenu começa oculto */
+}
+
+.submenu li {
+    margin-bottom: 10px;
+}
+
+.submenu a {
+    text-decoration: none;
+    color: #666;
+}
+
+.submenu a:hover {
+    color: #007bff;
+}
+
+/* Estilos do conteúdo principal */
+.main-content {
+    flex-grow: 1;
+    background-color: #EAEAEA;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Barra superior */
+.top-bar {
+    background-color: #F7F7F7;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.right-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.right-icons i {
+    font-size: 20px;
+}
+
+.logout-button i {
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+}
+
+.logout-button i:hover {
+    color: #d9534f;
+}
+
+/* Área de informações do login */
+.login-info {
+    text-align: center;
+    color: #333;
+}
+
+.login-info p {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.user-icon {
+    font-size: 60px;
+    margin: 20px 0;
+}
+
+.employee-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Ícones */
+.icon-user {
+    content: url('path-to-icon-user.svg');
+}
+
+.icon-class {
+    content: url('path-to-icon-class.svg');
+}
+
+.icon-simulado {
+    content: url('path-to-icon-simulado.svg');
+}
+
+.icon-menu {
+    content: url('path-to-icon-menu.svg');
+}
+
+.icon-settings {
+    content: url('path-to-icon-settings.svg');
+}
+
+.icon-user-circle {
+    content: url('path-to-icon-user-circle.svg');
+}
+
+.icon-user-large {
+    content: url('path-to-icon-user-large.svg');
+}
+
+.icon-logout {
+    content: url('path-to-icon-logout.svg'); /* Ícone de logout */
+    font-size: 22px;
+}
+
+
