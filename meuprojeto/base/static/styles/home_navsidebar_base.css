@@ -4,16 +4,22 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    padding-top: 60px; /* Ajuste conforme a altura da navbar */
     background-color: #f0f0f0; /* Cor de fundo da página */
 }
 
 .navbar {
-    background-color: #EDECE6;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between; /* Alinha os itens da navbar */
+    position: fixed; /* Fixa a navbar na parte superior */
+    top: 0; /* Alinha a navbar ao topo da página */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Ocupa a largura total da tela */
+    background-color: #EDECE6; /* Cor de fundo */
+    color: black; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+    display: flex; /* Para usar flexbox */
+    justify-content: space-between; /* Espaço entre os itens */
     align-items: center; /* Centraliza verticalmente */
+    z-index: 1000; /* Fica acima de outros elementos */
 }
 
 .navbar-actions {
@@ -147,7 +153,7 @@ body {
 }
 
 .content {
-    margin-left: 20px;
+    margin-top: 60px; /* Adiciona margem no topo para evitar sobreposição */
     padding: 20px;
 }
 
