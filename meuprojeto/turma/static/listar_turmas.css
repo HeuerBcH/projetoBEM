@@ -1,0 +1,107 @@
+/* Define a fonte padrão para o corpo do documento */
+body {
+    font-family: 'Lexend', sans-serif; /* Aplica a fonte Lexend */
+}
+
+/* Estilo do contêiner de cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Estilo do card */
+.card {
+    display: flex;
+    flex-direction: column; /* Coloca os itens em coluna */
+    justify-content: space-between; /* Espaça os elementos */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: 500px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    position: relative; /* Necessário para o posicionamento absoluto */
+    margin-bottom: 20px; /* Espaço entre os cards */
+}
+
+/* Estilo do ícone de imagem */
+.image-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #ddd;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+/* Estilo do conteúdo de texto */
+.card-content {
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    margin: 0 0 5px; /* Margem inferior para espaçamento */
+    font-size: 20px; /* Aumenta o tamanho do título */
+    color: #333;
+    font-weight: bold;
+}
+
+.card-content p {
+    margin: 5px 0; /* Margens superior e inferior */
+    color: #666;
+}
+
+/* Estilo do botão de dados */
+.dados-button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    margin-right: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo do botão de excluir */
+.delete-icon {
+    background: red; /* Fundo vermelho */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 8px; /* Ajuste o espaçamento interno */
+    cursor: pointer; /* Mão ao passar o mouse */
+    color: white; /* Cor do texto */
+    font-size: 1.2em; /* Tamanho do ícone */
+    position: absolute; /* Para posicionar no canto */
+    right: 15px; /* Espaçamento do lado direito */
+    bottom: 15px; /* Espaçamento da parte inferior */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.delete-icon:hover {
+    background-color: darkred; /* Escurece ao passar o mouse */
+}
+
+.delete-icon i {
+    font-size: 1em; /* Tamanho do ícone de lixeira */
+}
+
+/* Estilo para a mensagem temporária */
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.message {
+    background-color: #4caf50; /* Cor verde */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
