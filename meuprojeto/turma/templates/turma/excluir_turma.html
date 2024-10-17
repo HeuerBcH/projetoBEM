@@ -1,0 +1,17 @@
+<!-- excluir_turma.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Turma</title>
+</head>
+<body>
+    <h1>Excluir Turma</h1>
+    <p>Você tem certeza que deseja excluir a turma "{{ turma.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar Exclusão</button>
+    </form>
+    <a href="{% url 'listar_turmas' %}">Cancelar</a>
+</body>
+</html>

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Define que a sessão de login expire ao fechar o navegador
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
