@@ -2,33 +2,43 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
     <title>Listar Turmas</title>
-    <style>
-        /* Adicione algum estilo básico para os cards */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            width: 250px; /* Ajuste conforme necessário */
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM0s5KBvB2gtE1ET8ES6DpiT5Q9sSPu01NeWEZ7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'listar_turmas.css' %}"> 
 </head>
 <body>
     <h1>Lista de Turmas</h1>
+
+    {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="card-container">
         {% for turma in turmas %}
             <div class="card">
-                <h3>{{ turma.nome }}</h3>
-                <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
-                <p><strong>Dias:</strong> {{ turma.dias }}</p>
-                <p><strong>Professor:</strong> {{ turma.professor }}</p>
-                <p><strong>Alunos:</strong> {{ turma.alunos.count }}</p> <!-- Contar alunos matriculados -->
+                <div class="card-content">
+                    <h3>{{ turma.nome }}</h3>
+                    <p><strong>Dias:</strong> {{ turma.dias }}</p>
+                    <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
+
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <a href="{% url 'info_turma' turma.id %}" class="dados-button">Info</a>
+                        <a href="{% url 'editar_turma' turma.id %}" class="dados-button">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                    </div>
+                </div>
+                <form action="{% url 'excluir_turma' turma.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-icon" onclick="return confirm('Tem certeza que deseja excluir esta turma?');">
+                        <i class="fas fa-trash-alt"></i> <!-- Ícone de lixeira -->
+                    </button>
+                </form>
             </div>
         {% empty %}
             <div class="card">
@@ -36,5 +46,19 @@
             </div>
         {% endfor %}
     </div>
+
+    <script>
+        window.onload = function() {
+            const messageContainer = document.querySelector('.message-container');
+            if (messageContainer) {
+                setTimeout(() => {
+                    messageContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        messageContainer.remove();
+                    }, 500);
+                }, 3000);
+            }
+        };
+    </script>
 </body>
 </html>
