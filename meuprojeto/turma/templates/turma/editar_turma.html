@@ -1,48 +1,88 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Turma</title>
-</head>
-<body>
-    <h1>Editar Turma: {{ turma.nome }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
+{% extends 'base.html' %}
 
-        <div>
-            <label for="{{ form.nome.id_for_label }}">Nome da Turma:</label>
-            {{ form.nome }}
-            {{ form.nome.errors }}
+{% block title %}
+    Listar Turmas
+{% endblock %}
+
+{% block content %}
+
+    <div class="form-container">
+        <div class="form-box">
+            <h1>Editar Turma: {{ turma.nome }}</h1>
+            
+            <form method="POST" onsubmit="validarFormulario(event)">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <!-- Campo para Nome da Turma -->
+                <div class="form-group">
+                    <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                    <input type="text" id="{{ form.nome.id_for_label }}" name="{{ form.nome.name }}" class="form-control" value="{{ form.nome.value|default:'' }}" required>
+                    {% if form.nome.errors %}
+                        <div class="text-danger">{{ form.nome.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Horário de Início -->
+                <div class="form-group">
+                    <label for="{{ form.horario_inicio.id_for_label }}">{{ form.horario_inicio.label }}</label>
+                    <input type="time" id="{{ form.horario_inicio.id_for_label }}" name="{{ form.horario_inicio.name }}" class="form-control" value="{{ form.horario_inicio.value|default:'' }}" required>
+                    {% if form.horario_inicio.errors %}
+                        <div class="text-danger">{{ form.horario_inicio.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Horário de Fim -->
+                <div class="form-group">
+                    <label for="{{ form.horario_fim.id_for_label }}">{{ form.horario_fim.label }}</label>
+                    <input type="time" id="{{ form.horario_fim.id_for_label }}" name="{{ form.horario_fim.name }}" class="form-control" value="{{ form.horario_fim.value|default:'' }}" required>
+                    {% if form.horario_fim.errors %}
+                        <div class="text-danger">{{ form.horario_fim.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Nome do Professor -->
+                <div class="form-group">
+                    <label for="{{ form.professor.id_for_label }}">{{ form.professor.label }}</label>
+                    <input type="text" id="{{ form.professor.id_for_label }}" name="{{ form.professor.name }}" class="form-control" value="{{ form.professor.value|default:'' }}">
+                    {% if form.professor.errors %}
+                        <div class="text-danger">{{ form.professor.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Dias -->
+                <div class="form-group">
+                    <label for="{{ form.dias.id_for_label }}">{{ form.dias.label }}</label>
+                    <input type="text" id="{{ form.dias.id_for_label }}" name="{{ form.dias.name }}" class="form-control" value="{{ form.dias.value|default:'' }}" required>
+                    {% if form.dias.errors %}
+                        <div class="text-danger">{{ form.dias.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </form>
+
         </div>
-        
-        <div>
-            <label for="{{ form.dias.id_for_label }}">Dias da Semana:</label>
-            {{ form.dias }}
-            {{ form.dias.errors }}
-        </div>
+    </div>
+    <script>
+        function validarFormulario(event) {
+            const camposObrigatorios = document.querySelectorAll('.form-control[required]');
+            let todosPreenchidos = true;
 
-        <div>
-            <label for="{{ form.horario_inicio.id_for_label }}">Horário de Início:</label>
-            {{ form.horario_inicio }}
-            {{ form.horario_inicio.errors }}
-        </div>
+            camposObrigatorios.forEach(campo => {
+                if (!campo.value) {
+                    todosPreenchidos = false;
+                    campo.classList.add('is-invalid'); // Adiciona uma classe de erro visual
+                } else {
+                    campo.classList.remove('is-invalid'); // Remove a classe de erro
+                }
+            });
 
-        <div>
-            <label for="{{ form.horario_fim.id_for_label }}">Horário de Fim:</label>
-            {{ form.horario_fim }}
-            {{ form.horario_fim.errors }}
-        </div>
-
-        <div>
-            <label for="{{ form.professor.id_for_label }}">Professor Responsável:</label>
-            {{ form.professor }}
-            {{ form.professor.errors }}
-        </div>
-
-        <button type="submit">Salvar Alterações</button>
-    </form>
-
-    <a href="{% url 'listar_turmas' %}">Voltar à lista de turmas</a>
-</body>
-</html>
+            if (!todosPreenchidos) {
+                event.preventDefault(); // Impede o envio do formulário
+                alert("Por favor, preencha todos os campos obrigatórios.");
+            }
+        }
+    </script>
+{% endblock %}
