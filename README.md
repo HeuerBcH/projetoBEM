@@ -1,29 +1,36 @@
 # <p align="center">TESKI</p>
 
-<br>
+<p align="center">
+  Bem-vindo(a) ao repositório do projeto TESKI! Nosso objetivo é oferecer uma solução inovadora para empresas do setor educacional, focada na melhoria da logística e manipulação de informações e dados.
+</p>
 
-<h3 align="center">Bem vindo(a) ao nosso repositório! O objetivo deste projeto reside no intuito de apresentar às empresas do setor educacional uma nova maneira de lidar com sua logística e manipulação de informações e dados.</h3>
-<h3 align="center">Apresentamos aqui, todas as informações necessárias para compreender o processo de desenvolvimento do projeto TESKI, uma aplicação criada com a finalidade de propor à nossa empresa cliente uma abordagem diferente de lidar com sua logística no ramo educacional.</h3>
-<br><br>
+<p align="center">
+  Aqui você encontrará todas as informações necessárias para entender o processo de desenvolvimento do TESKI, uma aplicação desenvolvida para otimizar o gerenciamento logístico de nossa empresa cliente no setor educacional.
+</p>
+
+---
 
 ## 🔍 Visão Geral
-<br>
+
+O projeto TESKI foi criado com o intuito de facilitar a logística no setor educacional, propondo uma abordagem diferente e mais eficiente para o gerenciamento de dados e processos.
+
+---
 
 ## ✅ Status Report 1
 
-<br>
 
 ## 🚀 Nossa Equipe
 
-<br>
+- **Silvio Fittipaldi** (CC)
+- **Bernardo Heuer** (CC) 
+- **Luís Felipe** (CC)
+- **Lucas Santos** (CC)
+- **Erick Belo** (CC)
+- **Eduardo Roma** (CC)
+- **Rodrigo Barreto** (CC)
+- **Amanda Lima** (Design)
+- **Maria Betânia**(Design)
+- **Beatriz Bogater**(Design)
+- **João Gabriel**(Design)
 
-### Ciência da Computação
-
-<br>
-<ul>
-  <li>
-    <a href="https://github.com/HeuerBcH">Bernardo Heuer</a> - bchg@cesar.school 📩
-  </li>
-</ul>
-
-### Design
+---
