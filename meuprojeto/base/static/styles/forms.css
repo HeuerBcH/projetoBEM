@@ -16,16 +16,18 @@
 }
 
 /* Estilos dos campos do formulário */
-.form-box h1 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    color: #333;
-    text-align: center;
+.form-title {
+    font-size: 35px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    text-align: center; /* Alinhamento central */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
 }
 
 .form-group {
     margin-bottom: 20px; /* Espaçamento uniforme entre os campos */
     width: 100%; /* Garante que cada campo ocupe a largura total */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend a todos os itens do formulário */
 }
 
 /* Alinhamento e estilo dos rótulos e campos */
@@ -34,6 +36,7 @@
     font-size: 16px;
     color: #333;
     margin-bottom: 5px;
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
 }
 
 .form-group input,
@@ -46,6 +49,7 @@
     border-radius: 5px;
     background-color: #F9F9F9;
     box-sizing: border-box; /* Garante que padding e border sejam incluídos no width */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
 }
 
 /* Espaçamento uniforme para o botão */
@@ -60,6 +64,7 @@
     width: 100%; /* Ajustar para o botão ocupar a largura total */
     text-align: center;
     margin-top: 10px; /* Espaçamento acima do botão */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
 }
 
 .btn-primary:hover {
@@ -90,4 +95,48 @@
     margin-bottom: 10px; /* Espaço entre as mensagens */
     opacity: 1; /* Inicialmente visível */
     transition: opacity 0.5s ease; /* Transição suave */
+}
+
+.form-box h1 {
+    font-size: 35px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    margin-bottom: 30px; /* Espaçamento abaixo do título */
+    text-align: center; /* Alinhamento central */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
+    margin-left: 0; /* Remover margem à esquerda */
+}
+
+.btn-excluir {
+    background-color: #dc3545; /* Cor vermelha */
+    color: white; /* Cor do texto */
+    padding: 10px 15px; /* Ajuste do padding */
+    font-size: 16px; /* Tamanho da fonte */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s, transform 0.3s; /* Transição suave */
+    width: auto; /* Ajuste para não ocupar 100% da largura */
+    margin-top: 10px; /* Espaçamento acima do botão */
+    font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
+}
+
+.btn-excluir:hover {
+    background-color: #c82333; /* Tom mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento de tamanho */
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column; /* Para empilhar as checkboxes verticalmente */
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o checkbox com o texto */
+    margin-bottom: 10px; /* Espaço entre os checkboxes */
+}
+
+.checkbox-item input {
+    margin-right: 10px; /* Espaçamento entre o checkbox e o nome da turma */
 }

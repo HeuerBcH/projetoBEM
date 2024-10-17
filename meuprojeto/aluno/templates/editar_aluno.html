@@ -1,59 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Criar Simulado
+{% endblock %}
+
 {% block content %}
-<h2>Editar Aluno: {{ aluno.nome_aluno }}</h2>
 
-<form method="post">
-    {% csrf_token %}
-    
-    <div>
-        <label for="id_nome_aluno">{{ form.nome_aluno.label }}</label><br>
-        {{ form.nome_aluno }}<br>
-        {{ form.nome_aluno.errors }}
+<div class="form-container">
+    <div class="form-box">
+        <h1>Editar Aluno: {{ aluno.nome_aluno }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_nome_aluno">{{ form.nome_aluno.label }}</label>
+                {{ form.nome_aluno }}
+                {{ form.nome_aluno.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_matricula">{{ form.matricula.label }}</label>
+                {{ form.matricula }}
+                {{ form.matricula.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_data_nascimento">{{ form.data_nascimento.label }}</label>
+                {{ form.data_nascimento }}
+                {{ form.data_nascimento.errors }}
+            </div>
+
+            <div class="form-group">
+                <label>Selecione as Turmas:</label>
+                <div class="checkbox-group">
+                    {% for turma in form.turmas %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="turma_{{ turma.id }}" name="turmas" value="{{ turma.id }}" {% if turma.is_checked %}checked{% endif %}>
+                            <label for="turma_{{ turma.id }}">{{ turma.nome }}</label>
+                        </div>
+                    {% endfor %}
+                    {{ form.turmas.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="id_nome_responsavel">{{ form.nome_responsavel.label }}</label>
+                {{ form.nome_responsavel }}
+                {{ form.nome_responsavel.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_numero_responsavel">{{ form.numero_responsavel.label }}</label>
+                {{ form.numero_responsavel }}
+                {{ form.numero_responsavel.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_email_responsavel">{{ form.email_responsavel.label }}</label>
+                {{ form.email_responsavel }}
+                {{ form.email_responsavel.errors }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+
+        <!-- Botão para excluir aluno -->
+        <form method="post" action="{% url 'excluir_aluno' aluno.pk %}" onsubmit="return confirm('Você tem certeza que deseja excluir este aluno?');">
+            {% csrf_token %}
+            <button type="submit" class="btn-excluir">Excluir Aluno</button>
+        </form>
     </div>
-
-    <div>
-        <label for="id_matricula">{{ form.matricula.label }}</label><br>
-        {{ form.matricula }}<br>
-        {{ form.matricula.errors }}
-    </div>
-
-    <div>
-        <label for="id_data_nascimento">{{ form.data_nascimento.label }}</label><br>
-        {{ form.data_nascimento }}<br>
-        {{ form.data_nascimento.errors }}
-    </div>
-
-    <div>
-        <label>Selecione as Turmas:</label><br>
-        {{ form.turmas }}<br>
-        {{ form.turmas.errors }}
-    </div>
-
-    <div>
-        <label for="id_nome_responsavel">{{ form.nome_responsavel.label }}</label><br>
-        {{ form.nome_responsavel }}<br>
-        {{ form.nome_responsavel.errors }}
-    </div>
-
-    <div>
-        <label for="id_numero_responsavel">{{ form.numero_responsavel.label }}</label><br>
-        {{ form.numero_responsavel }}<br>
-        {{ form.numero_responsavel.errors }}
-    </div>
-
-    <div>
-        <label for="id_email_responsavel">{{ form.email_responsavel.label }}</label><br>
-        {{ form.email_responsavel }}<br>
-        {{ form.email_responsavel.errors }}
-    </div>
-
-    <button type="submit">Salvar Alterações</button>
-</form>
-
-<!-- Botão para excluir aluno -->
-<form method="post" action="{% url 'excluir_aluno' aluno.pk %}" onsubmit="return confirm('Você tem certeza que deseja excluir este aluno?');">
-    {% csrf_token %}
-    <button type="submit" style="background-color: red; color: white;">Excluir Aluno</button>
-</form>
+</div>
 
 <script>
 function formatDate(input) {
