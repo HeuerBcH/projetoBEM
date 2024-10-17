@@ -5,22 +5,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Simulado
+from turma.models import Turma
 
 def criar_simulado(request):
     if request.method == 'POST':
         form = SimuladoForm(request.POST)
         if form.is_valid():
-            simulado = form.save(commit=False)
-            simulado.save()
-            # Redirecione ou faça algo após salvar
-            return redirect('/criar_simulado_pagina/')  # Redirecionar após salvar
-
-        else:
-            print(form.errors)  # Verifique os erros do formulário para depuração
+            form.save()
+            return redirect('listar_simulados')  # Redireciona após salvar
     else:
         form = SimuladoForm()
-
-    return render(request, 'simulado/criar_simulado.html', {'form': form})
+    return render(request, 'criar_simulado.html', {'form': form})
 
 def criar_simulado_pagina(request):
     return render(request, 'simulado/criar_simulado.html')

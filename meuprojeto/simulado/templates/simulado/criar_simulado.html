@@ -1,8 +1,7 @@
+<!-- templates/simulado/criar_simulado.html -->
 {% extends 'base.html' %}
 
-{% block title %}
-    Criar Simulado
-{% endblock %}
+{% block title %}Criar Simulado{% endblock %}
 
 {% block content %}
 <div class="form-container">
@@ -10,53 +9,37 @@
         <h1>Criar Novo Simulado</h1>
 
         <!-- Formulário para criar o simulado -->
-        <form method="POST">
+        <form method="post">
             {% csrf_token %}
             
-            <!-- Campo para Nome do Simulado -->
             <div class="form-group">
-                <label for="nome">Nome do Simulado</label>
-                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do Simulado" value="{{ form.nome.value }}">
-                {% if form.nome.errors %}
-                    <div class="text-danger">{{ form.nome.errors }}</div>
-                {% endif %}
+                <label for="id_nome">Nome do Simulado</label>
+                <input type="text" name="nome" id="id_nome" class="form-control">
             </div>
 
-            <!-- Campo para Matéria -->
             <div class="form-group">
-                <label for="materia">Matéria</label>
-                <select id="materia" name="materia" class="form-control">
-                    <option value="matematica" {% if form.materia.value == "matematica" %}selected{% endif %}>Matemática</option>
-                    <option value="portugues" {% if form.materia.value == "portugues" %}selected{% endif %}>Português</option>
+                <label for="id_materia">Matéria</label>
+                <select name="materia" id="id_materia" class="form-control">
+                    <option value="portugues">Português</option>
+                    <option value="matematica">Matemática</option>
+                    <!-- Adicione mais opções conforme necessário -->
                 </select>
-                {% if form.materia.errors %}
-                    <div class="text-danger">{{ form.materia.errors }}</div>
-                {% endif %}
             </div>
 
-            <!-- Campo para Data e Hora de Início -->
             <div class="form-group">
-                <label for="data_inicio">Data e Hora de Início</label>
-                <input type="datetime-local" id="data_inicio" name="data_inicio" class="form-control" value="{{ form.data_inicio.value|date:'Y-m-d\\TH:i' }}">
-                {% if form.data_inicio.errors %}
-                    <div class="text-danger">{{ form.data_inicio.errors }}</div>
-                {% endif %}
+                <label for="id_data_inicio">Data de Início</label>
+                <input type="datetime-local" name="data_inicio" id="id_data_inicio" class="form-control">
             </div>
 
-            <!-- Campo para Turma -->
             <div class="form-group">
-                <label for="turma">Turma</label>
-                <select id="turma" name="turma" class="form-control">
-                    {% for turmas in form.fields.turma.queryset %}
-                        <option value="{{ turma.id }}" {% if turma.id == form.turma.value %}selected{% endif %}>{{ turma.nome }}</option>
+                <label for="id_turma">Turma</label>
+                <select name="turma" id="id_turma" class="form-control">
+                    {% for turma in turmas %}
+                        <option value="{{ turma.id }}">{{ turma.nome }}</option>
                     {% endfor %}
                 </select>
-                {% if form.turma.errors %}
-                    <div class="text-danger">{{ form.turma.errors }}</div>
-                {% endif %}
             </div>
 
-            <!-- Botão de Envio -->
             <button type="submit" class="btn btn-primary">Criar Simulado</button>
         </form>
     </div>
