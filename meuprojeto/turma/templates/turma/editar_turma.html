@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Criar Nova Turma
+    Listar Turmas
 {% endblock %}
 
 {% block content %}
+
     <div class="form-container">
         <div class="form-box">
-            <h1>Criar Nova Turma</h1>
+            <h1>Editar Turma: {{ turma.nome }}</h1>
             
-            <!-- Formulário para criar a turma -->
-            <form method="POST">
+            <form method="POST" onsubmit="validarFormulario(event)">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
@@ -60,8 +60,29 @@
                 </div>
 
                 <!-- Botão de Envio -->
-                <button type="submit" class="btn btn-primary">Criar Turma</button>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             </form>
+
         </div>
     </div>
+    <script>
+        function validarFormulario(event) {
+            const camposObrigatorios = document.querySelectorAll('.form-control[required]');
+            let todosPreenchidos = true;
+
+            camposObrigatorios.forEach(campo => {
+                if (!campo.value) {
+                    todosPreenchidos = false;
+                    campo.classList.add('is-invalid'); // Adiciona uma classe de erro visual
+                } else {
+                    campo.classList.remove('is-invalid'); // Remove a classe de erro
+                }
+            });
+
+            if (!todosPreenchidos) {
+                event.preventDefault(); // Impede o envio do formulário
+                alert("Por favor, preencha todos os campos obrigatórios.");
+            }
+        }
+    </script>
 {% endblock %}

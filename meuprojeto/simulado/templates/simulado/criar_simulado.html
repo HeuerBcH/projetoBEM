@@ -7,38 +7,57 @@
 {% block content %}
 <div class="form-container">
     <div class="form-box">
-        <h1>Criar Novo Simulado</h1>
+        <h1>Criar Novo Simulado</h1> <!-- Adicionei a classe form-title -->
 
         <!-- Formulário para criar o simulado -->
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
-
-            <!-- Campo para o nome do simulado -->
+            
+            <!-- Campo para Nome do Simulado -->
             <div class="form-group">
-                <label for="id_nome">Nome do Simulado</label>
-                {{ form.nome }} <!-- Renderiza o campo de texto para o nome do simulado -->
+                <label for="nome">Nome do Simulado</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome do Simulado" value="{{ form.nome.value }}">
+                {% if form.nome.errors %}
+                    <div class="text-danger">{{ form.nome.errors }}</div>
+                {% endif %}
             </div>
 
-            <!-- Campo para a data de realização -->
+            <!-- Campo para Matéria -->
             <div class="form-group">
-                <label for="id_data_realizacao">Data de Realização</label>
-                {{ form.data_realizacao }} <!-- Renderiza o campo de seleção de data -->
+                <label for="materia">Matéria</label>
+                <select id="materia" name="materia" class="form-control">
+                    <option value="matematica" {% if form.materia.value == "matematica" %}selected{% endif %}>Matemática</option>
+                    <option value="portugues" {% if form.materia.value == "portugues" %}selected{% endif %}>Português</option>
+                </select>
+                {% if form.materia.errors %}
+                    <div class="text-danger">{{ form.materia.errors }}</div>
+                {% endif %}
             </div>
 
-            <!-- Campo para escolher a matéria (português ou matemática) -->
+            <!-- Campo para Data e Hora de Início -->
             <div class="form-group">
-                <label for="id_materia">Matéria</label>
-                {{ form.materia }} <!-- Renderiza o campo de seleção para matéria -->
+                <label for="data_inicio">Data e Hora de Início</label>
+                <input type="datetime-local" id="data_inicio" name="data_inicio" class="form-control" value="{{ form.data_inicio.value|date:'Y-m-d\\TH:i' }}">
+                {% if form.data_inicio.errors %}
+                    <div class="text-danger">{{ form.data_inicio.errors }}</div>
+                {% endif %}
             </div>
 
-            <!-- Campo para escolher os alunos participantes -->
+            <!-- Campo para Turma -->
             <div class="form-group">
-                <label for="id_alunos_participantes">Alunos Participantes</label>
-                {{ form.alunos_participantes }} <!-- Renderiza o campo de seleção múltipla para alunos -->
+                <label for="turma">Turma</label>
+                <select id="turma" name="turma" class="form-control">
+                    {% for turma in form.fields.turma.queryset %}
+                        <option value="{{ turma.id }}" {% if turma.id == form.turma.value %}selected{% endif %}>{{ turma.nome }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.turma.errors %}
+                    <div class="text-danger">{{ form.turma.errors }}</div>
+                {% endif %}
             </div>
 
-            <!-- Botão para salvar o simulado -->
-            <button type="submit" class="btn btn-primary">Salvar Simulado</button>
+            <!-- Botão de Envio -->
+            <button type="submit" class="btn btn-primary">Criar Simulado</button>
         </form>
     </div>
 </div>

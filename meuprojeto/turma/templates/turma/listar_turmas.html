@@ -1,34 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Listar Turmas</title>
-    <style>
-        /* Adicione algum estilo básico para os cards */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            width: 250px; /* Ajuste conforme necessário */
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <h1>Lista de Turmas</h1>
+{% extends 'base.html' %}
+
+{% block title %}
+    Listar Turmas
+{% endblock %}
+
+{% block content %}
+    <h1>LISTA DE TURMAS</h1>
+
+    <div class="message-container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
     <div class="card-container">
         {% for turma in turmas %}
             <div class="card">
                 <h3>{{ turma.nome }}</h3>
-                <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
                 <p><strong>Dias:</strong> {{ turma.dias }}</p>
-                <p><strong>Professor:</strong> {{ turma.professor }}</p>
-                <p><strong>Alunos:</strong> {{ turma.alunos.count }}</p> <!-- Contar alunos matriculados -->
+                <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
+
+                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <div>
+                        <a href="{% url 'info_turma' turma.id %}" class="dados-button">Info</a>
+                        <a href="{% url 'editar_turma' turma.id %}" class="dados-button">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </div>
+                    <form action="{% url 'excluir_turma' turma.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-icon" onclick="return confirm('Tem certeza que deseja excluir esta turma?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         {% empty %}
             <div class="card">
@@ -36,5 +43,18 @@
             </div>
         {% endfor %}
     </div>
-</body>
-</html>
+
+    <script>
+        window.onload = function() {
+            const messageContainer = document.querySelector('.message-container');
+            if (messageContainer.children.length > 0) {
+                setTimeout(() => {
+                    messageContainer.style.opacity = '0';
+                    setTimeout(() => {
+                        messageContainer.remove();
+                    }, 500);
+                }, 2000); // Mensagem permanece por 2 segundos
+            }
+        };
+    </script>
+{% endblock %}

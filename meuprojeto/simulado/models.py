@@ -1,16 +1,21 @@
 from django.db import models
-from aluno.models import Aluno  # Certifique-se de que o caminho para o modelo Aluno está correto
+from django.utils import timezone
+from turma.models import Turma  # Importa o modelo Turma
 
 class Simulado(models.Model):
-    MATERIA_CHOICES = (
-        ('portugues', 'Português'),
+    MATERIA_CHOICES = [
         ('matematica', 'Matemática'),
-    )
-    
-    nome = models.CharField(max_length=100)
-    data_realizacao = models.DateField()
-    materia = models.CharField(max_length=20, choices=MATERIA_CHOICES,default= 'portugues')
-    alunos_participantes = models.ManyToManyField('aluno.Aluno', related_name='simulados')
+        ('portugues', 'Português'),
+    ]
+
+    nome = models.CharField(max_length=100, verbose_name="Nome do Simulado")
+    materia = models.CharField(max_length=20, choices=MATERIA_CHOICES, verbose_name="Matéria")
+    data_inicio = models.DateTimeField(default=timezone.now, verbose_name="Data e Hora de Início")
+    turma = models.ForeignKey(Turma, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Turma")  # Define o valor padrão para 'turma'
 
     def __str__(self):
-        return f"{self.nome} - {self.materia} ({self.data_realizacao})"
+        return f"{self.nome} - {self.materia} - {self.turma}"
+
+    class Meta:
+        verbose_name = "Simulado"
+        verbose_name_plural = "Simulados"

@@ -8,7 +8,7 @@
 
 <div class="form-container">
     <div class="form-box">
-        <h1>Adicionar Aluno</h1>
+        <h1>Editar Aluno: {{ aluno.nome_aluno }}</h1>
         <form method="post">
             {% csrf_token %}
             
@@ -32,8 +32,15 @@
 
             <div class="form-group">
                 <label>Selecione as Turmas:</label>
-                {{ form.turmas }}
-                {{ form.turmas.errors }}
+                <div class="checkbox-group">
+                    {% for turma in form.turmas %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="turma_{{ turma.id }}" name="turmas" value="{{ turma.id }}" {% if turma.is_checked %}checked{% endif %}>
+                            <label for="turma_{{ turma.id }}">{{ turma.nome }}</label>
+                        </div>
+                    {% endfor %}
+                    {{ form.turmas.errors }}
+                </div>
             </div>
 
             <div class="form-group">
@@ -54,7 +61,13 @@
                 {{ form.email_responsavel.errors }}
             </div>
 
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+
+        <!-- Botão para excluir aluno -->
+        <form method="post" action="{% url 'excluir_aluno' aluno.pk %}" onsubmit="return confirm('Você tem certeza que deseja excluir este aluno?');">
+            {% csrf_token %}
+            <button type="submit" class="btn-excluir">Excluir Aluno</button>
         </form>
     </div>
 </div>
@@ -62,7 +75,6 @@
 <script>
 function formatDate(input) {
     let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
     if (value.length >= 2) {
         value = value.slice(0, 2) + '/' + value.slice(2); // Adiciona barra após os dias
     }
@@ -72,25 +84,9 @@ function formatDate(input) {
     input.value = value; // Atualiza o valor do input
 }
 
-function formatPhoneNumber(input) {
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (value.length >= 2) {
-        value = '(' + value.slice(0, 2) + ') ' + value.slice(2); // Adiciona parênteses
-    }
-    if (value.length > 14) {
-        value = value.slice(0, 14); // Limita a 14 caracteres
-    }
-
-    input.value = value; // Atualiza o valor do input
-}
-
-// Adiciona eventos de input
+// Adiciona o evento de input ao campo de data de nascimento
 document.getElementById('id_data_nascimento').addEventListener('input', function() {
     formatDate(this);
-});
-document.getElementById('id_numero_responsavel').addEventListener('input', function() {
-    formatPhoneNumber(this);
 });
 </script>
 
