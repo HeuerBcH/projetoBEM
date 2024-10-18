@@ -3,9 +3,36 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="welcome">
-    <h2>Olá, {{ user.username }}!</h2>
+<style>
+    .content {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        height: calc(100vh - 60px); /* Altura total menos a navbar */
+        padding-left: 220px; /* Largura da sidebar */
+        padding-right: 20px; /* Espaçamento à direita */
+        overflow: hidden; /* Evita rolagem */
+    }
 
-    <p>HOMEEEEEEEEEEEEEEEEEEEEEE HOMEEEEEEEEEEEEEEEEEE HOMEEEEEEEEEEEEEEEEEEE</p>
+    .greeting {
+        background-color: white; /* Cor de fundo */
+        border-radius: 10px; /* Bordas arredondadas */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+        padding: 20px; /* Espaçamento interno */
+        text-align: center; /* Centraliza o texto */
+        max-width: 400px; /* Largura máxima */
+        width: 100%; /* Permite que o card ocupe espaço total até a largura máxima */
+    }
+
+    .greeting h2 {
+        font-size: 24px; /* Tamanho do título */
+        color: #333; /* Cor do texto */
+    }
+</style>
+
+<div class="content">
+    <div class="greeting">
+        <h2>Olá, {{ user.username }}!</h2>
+    </div>
 </div>
 {% endblock %}

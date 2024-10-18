@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap');
+
+/* Reset básico */
+body {
+    font-family: 'Lexend', sans-serif; /* Usando Lexend */
+    background-color: #f0f0f0; /* Cor de fundo da página */
+    margin: 0;
+    padding: 20px; /* Mantém padding uniforme */
+    padding-top: 60px; /* Espaço para a navbar */
+}
+
+.info-turma,
+.alunos-turma {
+    max-width: 800px; /* Largura máxima para centralizar o conteúdo */
+    margin: 20px auto; /* Centraliza o conteúdo */
+    padding: 20px;
+    background-color: #fff; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.info-turma h1, 
+.info-turma h2, 
+.alunos-turma h2, 
+.info-turma p {
+    text-align: center; /* Centraliza o texto */
+    margin: 10px 0; /* Margens uniformes */
+}
+
+.info-turma h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.alunos-turma h2 {
+    font-size: 2em;
+    color: #444;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info-turma p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.info-turma strong {
+    color: #222;
+}
+
+.alunos-turma ul {
+    list-style-type: none; /* Remove os marcadores */
+    padding: 0;
+}
+
+.alunos-turma ul li {
+    background-color: #f0f0f0; /* Fundo claro para os itens da lista */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+}
+
+.alunos-turma ul li:hover {
+    background-color: #e0e0e0; /* Altera a cor ao passar o mouse */
+}
+
+.alunos-turma a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Cor do botão */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.alunos-turma a:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
+}

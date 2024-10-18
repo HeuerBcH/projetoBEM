@@ -1,23 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Informações da Turma</title>
-</head>
-<body>
-    <h1>{{ turma.nome }}</h1>
-    <p><strong>Horário de Início:</strong> {{ turma.horario_inicio }}</p>
-    <p><strong>Horário de Fim:</strong> {{ turma.horario_fim }}</p>
-    <p><strong>Dias da Semana:</strong> {{ turma.dias }}</p>
-    <p><strong>Professor Responsável:</strong> {{ turma.professor }}</p>
-    <h2>Alunos Matriculados:</h2>
-    <ul>
-        {% for aluno in turma.alunos.all %}
-            <li>{{ aluno }}</li>
-        {% empty %}
-            <li>Nenhum aluno matriculado.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'listar_turmas' %}">Voltar para a lista de turmas</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Listar Turmas
+{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'info_turma.css' %}">
+    <div class="info-turma">
+        <h1>{{ turma.nome }}</h1>
+        <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
+        <p><strong>Dias da Semana:</strong> {{ turma.dias }}</p>
+        <p><strong>Professor Responsável:</strong> {{ turma.professor }}</p>
+    </div>
+
+    <div class="alunos-turma">
+        <h2>Alunos Matriculados:</h2>
+        <ul>
+            {% for aluno in turma.alunos.all %}
+                <li>{{ aluno }}</li>
+            {% empty %}
+                <li>Nenhum aluno matriculado.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'listar_turmas' %}">Voltar para a lista de turmas</a>
+    </div>
+{% endblock %}
+
+
