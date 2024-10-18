@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap');
 
+/* Reset de box-sizing para garantir que padding e border não afetem o tamanho dos elementos */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -25,6 +30,8 @@ body {
 .navbar-actions {
     display: flex;
     align-items: center; /* Alinha verticalmente os itens */
+    margin-left: auto; /* Afasta os itens para a direita */
+    margin-right: 20px; /* Ajuste para garantir que fique dentro da tela */
 }
 
 .menu-button {
@@ -65,9 +72,10 @@ body {
 
 .sidebar {
     position: fixed;
+    top: 60px; /* Inicia abaixo da navbar */
     left: 0; /* A sidebar agora está sempre visível */
     width: 60px; /* largura quando recolhida */
-    height: 100%;
+    height: calc(100% - 60px); /* Altura total menos a navbar */
     background-color: #F6F6F6;
     color: white;
     transition: width 0.3s; /* transição suave para largura */
@@ -209,5 +217,3 @@ body {
 .menu-button.active {
     color: #48d34c; /* Cor verde quando ativo */
 }
-
-
