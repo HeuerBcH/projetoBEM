@@ -35,7 +35,8 @@ Essa aplicação foi criada para atender às necessidades específicas do client
   <img src="diagrama de classes01.png" width="500" />
 </a>
 <br> 
-  clique na imagem para ser redirecionado para o vídeo 
+  clique na imagem para ser redirecionado para o site
+  
 
 
 
