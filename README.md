@@ -22,14 +22,21 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 ## ✅ Status Report 1
 ## SPRINT 1
+<<<<<<< HEAD
 
 ### Screencast Aplicação Web 
 <a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
   <img src="screncast01.png" width="500" />
+=======
+<h1> Screencast Aplicação Web  </h1> 
+<a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
+  <img src="screncast01.png" />
+>>>>>>> d51e5ca (Update README.md)
 </a>
 <br> 
   clique na imagem para ser redirecionado para o vídeo 
 
+<<<<<<< HEAD
 ### Diagrama de classes UML 
 <a href="https://lucid.app/lucidchart/64ce876e-c782-4bbc-a0b0-6c0d9b860745/edit?viewport_loc=-8735%2C-15476%2C3547%2C1741%2C0_0&invitationId=inv_d674a5f9-99f4-4faf-9a31-6cac564701f4">
   <img src="diagrama de classes01.png" width="500" />
@@ -37,6 +44,14 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 <br> 
   clique na imagem para ser redirecionado para o site
   
+=======
+<h2> Diagrama de classes UML </h2> 
+<a href="https://lucid.app/lucidchart/64ce876e-c782-4bbc-a0b0-6c0d9b860745/edit?viewport_loc=-8735%2C-15476%2C3547%2C1741%2C0_0&invitationId=inv_d674a5f9-99f4-4faf-9a31-6cac564701f4">
+  <img src="screncast01.png" />
+</a>
+<br> 
+  clique na imagem para ser redirecionado para o vídeo 
+>>>>>>> d51e5ca (Update README.md)
 
 
 
