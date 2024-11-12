@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Informações do Simulado: {{ simulado.nome }}
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <div class="form-box">
+            <h1>{{ simulado.nome }}</h1>
+            <p><strong>Turma:</strong> {{ turma.nome }}</p>
+            <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
+            
+            <!-- Tabela com alunos, notas e posição no ranking -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Aluno</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resultado in alunos_com_resultados %}
+                        <tr>
+                            <td>{{ resultado.posicao }}</td>
+                            <td>{{ resultado.aluno.nome_aluno }}</td>
+                            <td>{{ resultado.nota }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3">Nenhum aluno registrado para este simulado.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
