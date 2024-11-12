@@ -15,8 +15,8 @@ def criar_simulado(request):
         if form.is_valid():
             simulado = form.save(commit=False)
             simulado.save()
-            # Redirecione ou faça algo após salvar
-            return redirect('/criar_simulado_pagina/')  # Redirecionar após salvar
+            # Alterar para redirecionar usando o nome da URL
+            return redirect('listar_simulados')  # Usando o nome da URL
 
         else:
             print(form.errors)  # Verifique os erros do formulário para depuração
@@ -25,8 +25,6 @@ def criar_simulado(request):
 
     return render(request, 'simulado/criar_simulado.html', {'form': form})
 
-def criar_simulado_pagina(request):
-    return render(request, 'simulado/criar_simulado.html')
 
 def listar_simulados(request):
     # Busca todos os simulados, ordenando pela data de início
