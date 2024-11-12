@@ -1,0 +1,49 @@
+Arquivo temporário !!
+
+CONCLUÍDAS:
+
+3: Como usuário, eu gostaria de poder criar uma nova turma,para gerenciar melhor os alunos
+
+4: Como usuário, eu gostaria de poder adicionar um novo aluno
+
+5: Como usuário, eu gostaria de poder acessar e manipular as informações de cada aluno
+
+8: Como usuario quero poder excluir um aluno caso ele não participe mais do curso, para organizar os dados e o trabalho melhor
+
+12: Como usuário, quero poder excluir uma turma caso não seja mais necessária, para otimizar meu trabalho
+
+14: Como usuário, eu gostaria de poder visualizar todos os simulados que aconteceram e acontecerão em uma aba própria.
+
+16: Como usuário eu gostaria de ter uma página própria para a visualização de todos os alunos do curso, podendo ordenar, filtrar e pesquisar
+
+--------------------------------
+
+A FAZER: 
+
+1: Como usuário quero estabelecer a nota de um aluno em um determinado simulado
+
+6: Como usuário quero poder cadastrar um simulado para poder adicionar os alunos relacionados a ele e organizar meu trabalho
+
+7: Como usuário, eu quero poder filtrar os alunos (por idade, nome, turma, etc)
+
+18: Como usuário, eu quero poder ordenar os alunos (alfabetica, nascimento, etc)
+
+13: Como usuário, eu gostaria de cancelar/excluir a ocorrência de algum simulado, para otimizar meu trabalho
+
+15: Como usuário eu quero poder atribuir nota a cada aluno e em cada simulado
+
+19: Como usuário, eu quero ter acesso a uma página própria de cada simulado, que me forneça as informações sobre o mesmo
+
+BACKLOG:
+
+2: Como usuário quero poder enviar as notas automaticamente para o WhatsApp dos responsáveis do aluno, para otimizar meu tempo.
+
+9: Como usuário quero poder ter acesso a um calendário com informações importantes, para facilitar a organização e o planejamento do meu trabalho.
+
+10: Como usuário, quero ter acesso a uma aba de ranking de classificação dos alunos para cada simulado
+
+11: Como usuário, quero poder visualizar o histórico de notas de cada aluno em cada simulado que o mesmo tenha participado,
+para ter um  acompanhamento do progresso do mesmo ao longo do tempo.
+
+17: Como usuário, eu gostaria de ter acesso à pagina de informações de cada um dos simulados existentes, 
+para que eu possa ver os alunos participantes, da turma que foi designada

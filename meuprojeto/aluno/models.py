@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from simulado.models import Simulado
 
 class Aluno(models.Model):
     nome_aluno = models.CharField(max_length=100, verbose_name="Nome do Aluno")
@@ -13,3 +14,11 @@ class Aluno(models.Model):
 
     def __str__(self):
         return self.nome_aluno
+
+class ResultadoSimulado(models.Model):
+    simulado = models.ForeignKey(Simulado, on_delete=models.CASCADE)
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
+    nota = models.FloatField()
+
+    def __str__(self):
+        return f"Resultado {self.aluno.nome_aluno} - {self.simulado.nome}"

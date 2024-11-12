@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Editar Simulado: {{ simulado.nome }}
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <div class="form-box">
+            <h1>Editar Simulado: {{ simulado.nome }}</h1>
+
+            <form method="POST" onsubmit="validarFormulario(event)">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <!-- Campo para Nome do Simulado -->
+                <div class="form-group">
+                    <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                    <input type="text" id="{{ form.nome.id_for_label }}" name="{{ form.nome.name }}" class="form-control" value="{{ form.nome.value|default:'' }}" required>
+                    {% if form.nome.errors %}
+                        <div class="text-danger">{{ form.nome.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Matéria (Dropdown) -->
+                <div class="form-group">
+                    <label for="{{ form.materia.id_for_label }}">{{ form.materia.label }}</label>
+                    <select id="{{ form.materia.id_for_label }}" name="{{ form.materia.name }}" class="form-control">
+                        {% for materia in form.materia.field.choices %}
+                            <option value="{{ materia.0 }}" {% if materia.0 == form.materia.value %}selected{% endif %}>{{ materia.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.materia.errors %}
+                        <div class="text-danger">{{ form.materia.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Data e Hora de Início -->
+                <div class="form-group">
+                    <label for="{{ form.data_inicio.id_for_label }}">{{ form.data_inicio.label }}</label>
+                    <input type="datetime-local" id="{{ form.data_inicio.id_for_label }}" name="{{ form.data_inicio.name }}" class="form-control" value="{{ form.data_inicio.value|default:'' }}" required>
+                    {% if form.data_inicio.errors %}
+                        <div class="text-danger">{{ form.data_inicio.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para Turma (Dropdown) -->
+                <div class="form-group">
+                    <label for="{{ form.turma.id_for_label }}">{{ form.turma.label }}</label>
+                    <select id="{{ form.turma.id_for_label }}" name="{{ form.turma.name }}" class="form-control">
+                        {% for turma in form.turma.field.queryset %}
+                            <option value="{{ turma.id }}" {% if turma.id == form.turma.value %}selected{% endif %}>{{ turma.nome }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.turma.errors %}
+                        <div class="text-danger">{{ form.turma.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        function validarFormulario(event) {
+            const camposObrigatorios = document.querySelectorAll('.form-control[required]');
+            let todosPreenchidos = true;
+
+            camposObrigatorios.forEach(campo => {
+                if (!campo.value) {
+                    todosPreenchidos = false;
+                    campo.classList.add('is-invalid'); // Adiciona uma classe de erro visual
+                } else {
+                    campo.classList.remove('is-invalid'); // Remove a classe de erro
+                }
+            });
+
+            if (!todosPreenchidos) {
+                event.preventDefault(); // Impede o envio do formulário
+                alert("Por favor, preencha todos os campos obrigatórios.");
+            }
+        }
+    </script>
+{% endblock %}

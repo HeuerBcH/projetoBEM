@@ -137,3 +137,14 @@ GitHub.sublime-settings
 
 # Databases
 db.sqlite3
+
+# Cypress #
+cypress/videos/
+cypress/screenshots/
+cypress/fixtures/*
+cypress/integration/*.js
+cypress/plugins/index.js
+cypress/support/index.js
+
+# Node modules
+node_modules/
