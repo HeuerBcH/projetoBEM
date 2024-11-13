@@ -54,35 +54,56 @@ def excluir_simulado(request, simulado_id):
 
 @login_required
 def info_simulado(request, simulado_id):
-    # Recupera o Simulado baseado no ID
+    # Recupera o Simulado e a Turma associada
     simulado = get_object_or_404(Simulado, id=simulado_id)
-    
-    # Recupera a turma associada ao simulado
     turma = simulado.turma
     
-    # Obtém todos os alunos da turma do simulado
-    alunos = Aluno.objects.filter(turmas=simulado.turma).order_by('colocacao_geral')
+    # Obtém os alunos da turma em ordem alfabética
+    alunos = Aluno.objects.filter(turmas=turma).order_by('nome_aluno')
     
-    # Obtém os resultados (notas) dos alunos para o simulado
-    resultados = ResultadoSimulado.objects.filter(simulado=simulado).order_by('-nota')
+    # Verifica se todos os alunos têm uma nota associada
+    resultados = ResultadoSimulado.objects.filter(simulado=simulado)
+    todos_com_nota = len(resultados) == alunos.count()
     
-    # Cria uma lista de alunos com seus resultados e posições
+    # Se o formulário for submetido com o botão "Finalizar"
+    if request.method == 'POST' and 'finalizar' in request.POST:
+        for aluno in alunos:
+            nota = request.POST.get(f'notas_{aluno.id}')
+            if nota:
+                # Salva ou atualiza o resultado do aluno
+                ResultadoSimulado.objects.update_or_create(
+                    simulado=simulado,
+                    aluno=aluno,
+                    defaults={'nota': float(nota)}
+                )
+        # Redireciona para atualizar a página e exibir o ranking
+        return redirect('info_simulado', simulado_id=simulado_id)
+
+    # Cria um dicionário para armazenar o ranking
+    ranking_dict = {}
+    if todos_com_nota:
+        # Ordena os resultados por nota e atribui posições de ranking
+        resultados_ordenados = resultados.order_by('-nota')
+        for posicao, resultado in enumerate(resultados_ordenados, 1):
+            ranking_dict[resultado.aluno.id] = posicao
+
+    # Cria a lista de alunos com seus resultados e o ranking
     alunos_com_resultados = []
-    for posicao, resultado in enumerate(resultados, 1):
+    for aluno in alunos:
+        resultado = resultados.filter(aluno=aluno).first()
         alunos_com_resultados.append({
-            'aluno': resultado.aluno,
-            'nota': resultado.nota,
-            'posicao': posicao  # Calcula a posição dinamicamente
+            'aluno': aluno,
+            'nota': resultado.nota if resultado else None,
+            'posicao': ranking_dict.get(aluno.id) if todos_com_nota else None  # Pega a posição do ranking
         })
-    
+
     # Passa os dados para o template
     return render(request, 'simulado/info_simulado.html', {
         'simulado': simulado,
         'turma': turma,
-        'alunos_com_resultados': alunos_com_resultados
+        'alunos_com_resultados': alunos_com_resultados,
+        'todos_com_nota': todos_com_nota
     })
-
-
 
 def editar_simulado(request, simulado_id):
     simulado = get_object_or_404(Simulado, id=simulado_id)
