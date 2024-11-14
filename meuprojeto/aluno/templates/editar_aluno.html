@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Criar Simulado
+    Editar Aluno
 {% endblock %}
 
 {% block content %}
@@ -32,15 +32,8 @@
 
             <div class="form-group">
                 <label>Selecione as Turmas:</label>
-                <div class="checkbox-group">
-                    {% for turma in form.turmas %}
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="turma_{{ turma.id }}" name="turmas" value="{{ turma.id }}" {% if turma.is_checked %}checked{% endif %}>
-                            <label for="turma_{{ turma.id }}">{{ turma.nome }}</label>
-                        </div>
-                    {% endfor %}
-                    {{ form.turmas.errors }}
-                </div>
+                {{ form.turmas }}  <!-- Aqui, o campo turmas será renderizado corretamente -->
+                {{ form.turmas.errors }}
             </div>
 
             <div class="form-group">

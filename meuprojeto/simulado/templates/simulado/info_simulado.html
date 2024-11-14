@@ -43,6 +43,12 @@
         background-color: #fafafa;
     }
 
+    /* Estilo para a caixa de seleção */
+    .sort-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 </style>
 
 <div class="form-container">
@@ -51,6 +57,20 @@
         <p><strong>Turma:</strong> {{ turma.nome }}</p>
         <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
         
+
+        <br><br>
+        <!-- Caixa de seleção para ordenar os alunos -->
+        <div class="sort-container">
+            <form method="GET" action="">
+                <label for="sort">Ordenar por:</label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="alfabetica" {% if request.GET.sort == "alfabetica" %}selected{% endif %}>Alfabética</option>
+                    <option value="idade" {% if request.GET.sort == "idade" %}selected{% endif %}>Idade</option>
+                    <option value="ranking" {% if request.GET.sort == "ranking" %}selected{% endif %}>Ranking</option>
+                </select>
+            </form>
+        </div>
+
         <!-- Formulário para salvar as notas dos alunos -->
         <form method="POST" action="">
             {% csrf_token %}
@@ -92,3 +112,4 @@
     </div>
 </div>
 {% endblock %}
+

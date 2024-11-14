@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
     Listar Alunos
@@ -25,7 +25,6 @@
         <h3>{{ aluno.nome_aluno }}</h3>
         <p><strong>Situação:</strong> {{ aluno.matricula|yesno:"Matriculado,Não Matriculado" }}</p>
         <p><strong>Nascimento:</strong> {{ aluno.data_nascimento }}</p>
-        <p><strong>Colocação Geral:</strong> {{ aluno.colocacao_geral }}</p>
         <p><strong>Turmas:</strong> 
             {% for turma in aluno.turmas.all %}
                 <span style="background-color: #f0f0f0; padding: 3px 5px; border-radius: 4px; margin-right: 5px;">{{ turma.nome }}</span>

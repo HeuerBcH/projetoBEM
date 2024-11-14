@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Simulado
 from django.utils import timezone
 from aluno.models import Aluno, ResultadoSimulado
+from django.db.models import F
 
 @login_required
 def criar_simulado(request):
@@ -40,6 +41,51 @@ def listar_simulados(request):
         'simulados_passados': simulados_passados,
         'now': timezone.now()  # Para passar a data atual, se necessário
     })
+ 
+
+def info_simulado(request, simulado_id):
+    simulado = get_object_or_404(Simulado, id=simulado_id)
+    turma = simulado.turma
+    alunos = Aluno.objects.filter(turmas=turma)
+
+    # Obter a opção de ordenação da URL
+    sort_option = request.GET.get('sort', 'default')
+    if sort_option == 'alfabetica':
+        alunos = alunos.order_by('nome_aluno')
+    elif sort_option == 'idade':
+        alunos = alunos.order_by('data_nascimento')
+    elif sort_option == 'ranking':
+        # Apenas faça a anotação se tiver certeza de que a relação está correta
+        alunos = alunos.annotate(rank_score=F('resultadosimulado__nota')).order_by('-rank_score', 'data_nascimento')
+
+    resultados = ResultadoSimulado.objects.filter(simulado=simulado)
+    todos_com_nota = len(resultados) == alunos.count()
+
+    # Código de processamento do POST para salvar notas
+
+    ranking_dict = {}
+    if todos_com_nota:
+        resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
+        for posicao, resultado in enumerate(resultados_ordenados, 1):
+            ranking_dict[resultado.aluno.id] = posicao
+
+    alunos_com_resultados = []
+    for aluno in alunos:
+        resultado = resultados.filter(aluno=aluno).first()
+        alunos_com_resultados.append({
+            'aluno': aluno,
+            'nota': resultado.nota if resultado else None,
+            'posicao': ranking_dict.get(aluno.id) if todos_com_nota else None
+        })
+
+    return render(request, 'simulado/info_simulado.html', {
+        'simulado': simulado,
+        'turma': turma,
+        'alunos_com_resultados': alunos_com_resultados,
+        'todos_com_nota': todos_com_nota,
+        'sort_option': sort_option
+    })
+
 
 @login_required
 def excluir_simulado(request, simulado_id):
@@ -52,60 +98,7 @@ def excluir_simulado(request, simulado_id):
 
     return render(request, 'simulado/excluir_simulado_confirmar.html', {'simulado': simulado})
 
-@login_required
-def info_simulado(request, simulado_id):
-    # Recupera o Simulado e a Turma associada
-    simulado = get_object_or_404(Simulado, id=simulado_id)
-    turma = simulado.turma
-    
-    # Obtém os alunos da turma em ordem alfabética
-    alunos = Aluno.objects.filter(turmas=turma).order_by('nome_aluno')
-    
-    # Verifica se todos os alunos têm uma nota associada
-    resultados = ResultadoSimulado.objects.filter(simulado=simulado)
-    todos_com_nota = len(resultados) == alunos.count()
 
-    # Se o formulário for submetido com o botão "Finalizar"
-    if request.method == 'POST' and 'finalizar' in request.POST:
-        for aluno in alunos:
-            nota = request.POST.get(f'notas_{aluno.id}')
-            if nota:
-                # Salva ou atualiza o resultado do aluno
-                ResultadoSimulado.objects.update_or_create(
-                    simulado=simulado,
-                    aluno=aluno,
-                    defaults={'nota': float(nota)}
-                )
-        # Redireciona para atualizar a página e exibir o ranking
-        return redirect('info_simulado', simulado_id=simulado_id)
-
-    # Cria um dicionário para armazenar o ranking
-    ranking_dict = {}
-    if todos_com_nota:
-        # Ordena os resultados por nota de forma decrescente e idade (se necessário)
-        resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
-
-        # Agora, para cada resultado ordenado, atribuímos a posição do ranking
-        for posicao, resultado in enumerate(resultados_ordenados, 1):
-            ranking_dict[resultado.aluno.id] = posicao
-
-    # Cria a lista de alunos com seus resultados e o ranking
-    alunos_com_resultados = []
-    for aluno in alunos:
-        resultado = resultados.filter(aluno=aluno).first()
-        alunos_com_resultados.append({
-            'aluno': aluno,
-            'nota': resultado.nota if resultado else None,
-            'posicao': ranking_dict.get(aluno.id) if todos_com_nota else None  # Pega a posição do ranking
-        })
-
-    # Passa os dados para o template
-    return render(request, 'simulado/info_simulado.html', {
-        'simulado': simulado,
-        'turma': turma,
-        'alunos_com_resultados': alunos_com_resultados,
-        'todos_com_nota': todos_com_nota
-    })
 
 def editar_simulado(request, simulado_id):
     simulado = get_object_or_404(Simulado, id=simulado_id)

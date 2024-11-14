@@ -23,16 +23,16 @@ def listar_alunos(request):
 
     # Aplica os filtros, se valores existirem
     if nome:
-        alunos = alunos.filter(nome_alunoicontains=nome)
+        alunos = alunos.filter(nome_alunoicontains=nome)  # Corrigido o nome do campo
 
     if turma:
-        alunos = alunos.filter(turmas__nome__icontains=turma)
+        alunos = alunos.filter(turmasnome__icontains=turma)
 
     return render(request, 'listar_alunos.html', {'alunos': alunos})
 
 def editar_aluno(request, pk):
     aluno = Aluno.objects.get(pk=pk)
-    
+
     if request.method == 'POST':
         form = AlunoForm(request.POST, instance=aluno)
         if form.is_valid():
@@ -40,8 +40,10 @@ def editar_aluno(request, pk):
             return redirect('listar_alunos')  # Redireciona após salvar
     else:
         form = AlunoForm(instance=aluno)
-    
+
+    # Certifique-se de que a instância do aluno tenha as turmas associadas corretamente
     return render(request, 'editar_aluno.html', {'form': form, 'aluno': aluno})
+
 
 def excluir_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
