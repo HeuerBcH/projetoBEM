@@ -15,7 +15,19 @@ def adicionar_aluno(request):
 
 
 def listar_alunos(request):
+    nome = request.GET.get('nome')
+    idade = request.GET.get('idade')
+    turma = request.GET.get('turma')
+
     alunos = Aluno.objects.all()
+
+    # Aplica os filtros, se valores existirem
+    if nome:
+        alunos = alunos.filter(nome_alunoicontains=nome)
+
+    if turma:
+        alunos = alunos.filter(turmas__nome__icontains=turma)
+
     return render(request, 'listar_alunos.html', {'alunos': alunos})
 
 def editar_aluno(request, pk):

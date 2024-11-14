@@ -4,6 +4,7 @@ from turma.models import Turma  # Importa o modelo Turma
 
 class SimuladoForm(forms.ModelForm):
     turma = forms.ModelChoiceField(queryset=Turma.objects.all(), label="Turma", required=True)
+
     
     class Meta:
         model = Simulado

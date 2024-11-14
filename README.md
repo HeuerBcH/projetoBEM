@@ -47,6 +47,10 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 <br>
 
+## ✅ Status Report 2
+
+<h2><b>SPRINT 2</b></h2>
+
 ## 🚀 Nossa Equipe
 
 - **Silvio Fittipaldi** (sfm@cesar.school)(CC)

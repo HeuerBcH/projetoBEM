@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Informações do Simulado: {{ simulado.nome }}
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Estilo geral da tabela */
+    .table-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #333;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    /* Cabeçalho da tabela */
+    .table th {
+        background-color: #e0e0e0;
+        text-align: center;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Células da tabela */
+    .table td {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #333;
+        background-color: #fafafa;
+    }
+
+    /* Estilo para as linhas */
+    .table tr {
+        background-color: #fafafa;
+    }
+
+</style>
+
+<div class="form-container">
+    <div class="form-box">
+        <h1>{{ simulado.nome }}</h1>
+        <p><strong>Turma:</strong> {{ turma.nome }}</p>
+        <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
+        
+        <!-- Formulário para salvar as notas dos alunos -->
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome dos Alunos</th>
+                            <th>Nota</th>
+                            <th>Ranking</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for resultado in alunos_com_resultados %}
+                            <tr>
+                                <td>{{ resultado.aluno.nome_aluno }}</td>
+                                <td>
+                                    <!-- Campo editável para a nota -->
+                                    {% if not todos_com_nota %}
+                                        <input type="number" name="notas_{{ resultado.aluno.id }}" value="{{ resultado.nota }}" step="0.01" min="0" max="10">
+                                    {% else %}
+                                        {{ resultado.nota }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ resultado.posicao }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3">Nenhum aluno registrado para este simulado.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if not todos_com_nota %}
+                <button type="submit" name="finalizar" class="btn btn-primary">Finalizar</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
