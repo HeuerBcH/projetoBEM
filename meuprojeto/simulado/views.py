@@ -64,7 +64,7 @@ def info_simulado(request, simulado_id):
     # Verifica se todos os alunos têm uma nota associada
     resultados = ResultadoSimulado.objects.filter(simulado=simulado)
     todos_com_nota = len(resultados) == alunos.count()
-    
+
     # Se o formulário for submetido com o botão "Finalizar"
     if request.method == 'POST' and 'finalizar' in request.POST:
         for aluno in alunos:
@@ -82,8 +82,10 @@ def info_simulado(request, simulado_id):
     # Cria um dicionário para armazenar o ranking
     ranking_dict = {}
     if todos_com_nota:
-        # Ordena os resultados por nota e atribui posições de ranking
-        resultados_ordenados = resultados.order_by('-nota')
+        # Ordena os resultados por nota de forma decrescente e idade (se necessário)
+        resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
+
+        # Agora, para cada resultado ordenado, atribuímos a posição do ranking
         for posicao, resultado in enumerate(resultados_ordenados, 1):
             ranking_dict[resultado.aluno.id] = posicao
 
