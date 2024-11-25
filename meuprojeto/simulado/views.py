@@ -8,6 +8,7 @@ from .models import Simulado
 from django.utils import timezone
 from aluno.models import Aluno, ResultadoSimulado
 from django.db.models import F
+from django.http import HttpResponse
 
 @login_required
 def criar_simulado(request):
@@ -55,19 +56,31 @@ def info_simulado(request, simulado_id):
     elif sort_option == 'idade':
         alunos = alunos.order_by('data_nascimento')
     elif sort_option == 'ranking':
-        # Apenas faça a anotação se tiver certeza de que a relação está correta
         alunos = alunos.annotate(rank_score=F('resultadosimulado__nota')).order_by('-rank_score', 'data_nascimento')
 
+    # Buscar resultados dos alunos para esse simulado
     resultados = ResultadoSimulado.objects.filter(simulado=simulado)
     todos_com_nota = len(resultados) == alunos.count()
-
-    # Código de processamento do POST para salvar notas
 
     ranking_dict = {}
     if todos_com_nota:
         resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
         for posicao, resultado in enumerate(resultados_ordenados, 1):
             ranking_dict[resultado.aluno.id] = posicao
+
+    # Processando o POST para salvar notas
+    if request.method == 'POST':
+        # Iterar sobre cada aluno e atualizar as notas se fornecidas
+        for aluno in alunos:
+            nota = request.POST.get(f'notas_{aluno.id}')
+            if nota:
+                resultado = resultados.filter(aluno=aluno).first()
+                if resultado:
+                    resultado.nota = float(nota)  # Atualizando a nota
+                    resultado.save()
+
+        # Redirecionar para a página de informações do simulado após salvar as alterações
+        return redirect('info_simulado', simulado_id=simulado.id)
 
     alunos_com_resultados = []
     for aluno in alunos:
@@ -85,7 +98,6 @@ def info_simulado(request, simulado_id):
         'todos_com_nota': todos_com_nota,
         'sort_option': sort_option
     })
-
 
 @login_required
 def excluir_simulado(request, simulado_id):

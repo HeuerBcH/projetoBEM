@@ -12,7 +12,7 @@
         justify-content: center;
         padding: 20px;
     }
-    
+
     .table {
         width: 100%;
         border-collapse: collapse;
@@ -49,6 +49,26 @@
         justify-content: center;
         margin-bottom: 20px;
     }
+
+    /* Estilo para o botão editar */
+    .btn-editar {
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-editar:hover {
+        background-color: #0056b3;
+    }
+
+    /* Estilo para os campos de notas editáveis */
+    .editable {
+        width: 80px;
+        padding: 5px;
+    }
 </style>
 
 <div class="form-container">
@@ -56,7 +76,6 @@
         <h1>{{ simulado.nome }}</h1>
         <p><strong>Turma:</strong> {{ turma.nome }}</p>
         <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
-        
 
         <br><br>
         <!-- Caixa de seleção para ordenar os alunos -->
@@ -71,8 +90,11 @@
             </form>
         </div>
 
-        <!-- Formulário para salvar as notas dos alunos -->
-        <form method="POST" action="">
+        <!-- Botão Editar -->
+        <button class="btn-editar" id="editar-btn">Editar</button>
+
+        <!-- Formulário para editar as notas dos alunos -->
+        <form method="POST" action="" id="form-notas">
             {% csrf_token %}
             <div class="table-container">
                 <table class="table">
@@ -89,11 +111,16 @@
                                 <td>{{ resultado.aluno.nome_aluno }}</td>
                                 <td>
                                     <!-- Campo editável para a nota -->
-                                    {% if not todos_com_nota %}
-                                        <input type="number" name="notas_{{ resultado.aluno.id }}" value="{{ resultado.nota }}" step="0.01" min="0" max="10">
-                                    {% else %}
-                                        {{ resultado.nota }}
-                                    {% endif %}
+                                    <input 
+                                        type="number" 
+                                        name="notas_{{ resultado.aluno.id }}" 
+                                        value="{{ resultado.nota }}" 
+                                        step="0.01" 
+                                        min="0" 
+                                        max="10"
+                                        class="editable"
+                                        disabled
+                                    >
                                 </td>
                                 <td>{{ resultado.posicao }}</td>
                             </tr>
@@ -105,11 +132,29 @@
                     </tbody>
                 </table>
             </div>
-            {% if not todos_com_nota %}
-                <button type="submit" name="finalizar" class="btn btn-primary">Finalizar</button>
-            {% endif %}
         </form>
     </div>
 </div>
-{% endblock %}
 
+<script>
+    // Função para ativar os campos de edição
+    document.getElementById('editar-btn').addEventListener('click', function() {
+        let inputs = document.querySelectorAll('.editable');
+        inputs.forEach(input => {
+            input.disabled = false; // Habilita os campos de nota
+        });
+        this.disabled = true; // Desabilita o botão "Editar" após ser clicado
+    });
+
+    // Função para enviar o formulário quando o usuário pressionar ENTER
+    document.querySelectorAll('.editable').forEach(input => {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evita o comportamento padrão de 'Enter' (ex: mudança de linha)
+                document.getElementById('form-notas').submit(); // Envia o formulário automaticamente
+            }
+        });
+    });
+</script>
+
+{% endblock %}

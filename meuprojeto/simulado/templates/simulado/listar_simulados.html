@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>SIMULADOS FUTUROS</h1>
+    <h1>SIMULADOS AGENDADOS</h1>
 
     <div class="message-container">
         {% if messages %}
@@ -42,7 +42,7 @@
             </div>
         {% empty %}
             <div class="card">
-                <p>Nenhum simulado futuro cadastrado.</p>
+                <p>Nenhum simulado.</p>
             </div>
         {% endfor %}
     </div>
@@ -50,7 +50,7 @@
     <br>
     <br>
     <!-- SIMULADOS PASSADOS -->
-    <h1>SIMULADOS PASSADOS</h1>
+    <h1>SIMULADOS ANTERIORES</h1>
     <div class="card-container">
         {% for simulado in simulados_passados %}
             <div class="card">
@@ -78,7 +78,7 @@
             </div>
         {% empty %}
             <div class="card">
-                <p>Nenhum simulado passado.</p>
+                <p>Nenhum simulado.</p>
             </div>
         {% endfor %}
     </div>
