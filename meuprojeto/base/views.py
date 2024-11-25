@@ -81,3 +81,6 @@ def entrar(request):
         return redirect('home')  # Redireciona para a página inicial
 
     return render(request, 'entrar.html')
+
+def home(request):
+    return render(request, 'home.html')  # Ou o nome do template correspondente
