@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>TURMAS</h1>
+    <h1 class="title">LISTA DE TURMAS</h1>
 
     <div class="message-container">
         {% if messages %}
@@ -18,17 +18,19 @@
     <div class="card-container">
         {% for turma in turmas %}
             <div class="card">
-                <h3>{{ turma.nome }}</h3>
-                <p><strong>Dias:</strong> {{ turma.dias }}</p>
-                <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
-
-                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <div>
-                        <a href="{% url 'info_turma' turma.id %}" class="dados-button">Info</a>
-                        <a href="{% url 'editar_turma' turma.id %}" class="dados-button">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </div>
+                <div class="card-header">
+                    <h3>{{ turma.nome }}</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Dias:</strong> {{ turma.dias }}</p>
+                    <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
+                    <p><strong>Professor:</strong> {{ turma.professor }}</p> <!-- Novo campo para o nome do professor -->
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'info_turma' turma.id %}" class="dados-button">Info</a>
+                    <a href="{% url 'editar_turma' turma.id %}" class="dados-button">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     <form action="{% url 'excluir_turma' turma.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="delete-icon" onclick="return confirm('Tem certeza que deseja excluir esta turma?');">

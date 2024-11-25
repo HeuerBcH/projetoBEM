@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>AGENDADOS</h1>
+    <h1 class="title">AGENDADOS</h1>
 
     <div class="message-container">
         {% if messages %}
@@ -18,20 +18,19 @@
     <div class="card-container">
         {% for simulado in simulados_futuros %}
             <div class="card">
-                <h3>{{ simulado.nome }}</h3>
-                <p><strong>Matéria:</strong> {{ simulado.materia }}</p>
-                <p><strong>Data e Hora de Início:</strong> {{ simulado.data_inicio|date:"d/m/Y H:i" }}</p>
-                <p><strong>Turma:</strong> {{ simulado.turma.nome }}</p>
-
-                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <div>
-                        <a href="{% url 'info_simulado' simulado.id %}" class="dados-button">Info</a>
-                        <a href="{% url 'editar_simulado' simulado.id %}" class="dados-button">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </div>
-
-                    <!-- Formulário de exclusão -->
+                <div class="card-header">
+                    <h3>{{ simulado.nome }}</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Matéria:</strong> {{ simulado.materia }}</p>
+                    <p><strong>Data e Hora de Início:</strong> {{ simulado.data_inicio|date:"d/m/Y H:i" }}</p>
+                    <p><strong>Turma:</strong> {{ simulado.turma.nome }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'info_simulado' simulado.id %}" class="dados-button">Info</a>
+                    <a href="{% url 'editar_simulado' simulado.id %}" class="dados-button">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     <form action="{% url 'excluir_simulado' simulado.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="delete-icon" onclick="return confirm('Tem certeza que deseja excluir este simulado?');">
@@ -42,32 +41,30 @@
             </div>
         {% empty %}
             <div class="card">
-                <p>Nenhum simulado.</p>
+                <p>Não há simulados agendados.</p>
             </div>
         {% endfor %}
     </div>
 
     <br>
     <br>
-    <!-- SIMULADOS PASSADOS -->
-    <h1>EXPIRADOS</h1>
+    <h1 class="title">EXPIRADOS</h1>
     <div class="card-container">
         {% for simulado in simulados_passados %}
             <div class="card">
-                <h3>{{ simulado.nome }}</h3>
-                <p><strong>Matéria:</strong> {{ simulado.materia }}</p>
-                <p><strong>Data e Hora de Início:</strong> {{ simulado.data_inicio|date:"d/m/Y H:i" }}</p>
-                <p><strong>Turma:</strong> {{ simulado.turma.nome }}</p>
-
-                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                    <div>
-                        <a href="{% url 'info_simulado' simulado.id %}" class="dados-button">Info</a>
-                        <a href="{% url 'editar_simulado' simulado.id %}" class="dados-button">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </div>
-
-                    <!-- Formulário de exclusão -->
+                <div class="card-header">
+                    <h3>{{ simulado.nome }}</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Matéria:</strong> {{ simulado.materia }}</p>
+                    <p><strong>Data e Hora de Início:</strong> {{ simulado.data_inicio|date:"d/m/Y H:i" }}</p>
+                    <p><strong>Turma:</strong> {{ simulado.turma.nome }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'info_simulado' simulado.id %}" class="dados-button">Info</a>
+                    <a href="{% url 'editar_simulado' simulado.id %}" class="dados-button">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
                     <form action="{% url 'excluir_simulado' simulado.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="delete-icon" onclick="return confirm('Tem certeza que deseja excluir este simulado?');">
@@ -78,7 +75,7 @@
             </div>
         {% empty %}
             <div class="card">
-                <p>Nenhum simulado.</p>
+                <p>Não há simulados expirados.</p>
             </div>
         {% endfor %}
     </div>
