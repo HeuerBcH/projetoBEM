@@ -30,24 +30,23 @@ Essa aplicação foi criada para atender às necessidades específicas do client
       >Lucidspark - Diagrama de classes UML</a
   </li>
   </li>
-    <li>
-    <a  href="https://trello.com/invite/b/66ea030e0cf26d2fc959e030/ATTI46a074c07e4dce24da4468e37e2adb82CA84158F/g9"
-      >Trelo - Quadros Kanban</a  
-  </li>
-     <li>
-    <a  href="https://miro.com/welcomeonboard/V1ducjBMRk5OSzcxNFBEc2NYRFBmOEpsR1RFMDh2NmExOXBkdDV4SFdlb3A2Skg0SWFmT3JiS2N2Y1pSa09CanwzNDU4NzY0NTYyMzcwOTAzNjE1fDI=?share_link_id=537364375015"
-      >Miro - Projetos e ideação </a
-  </li>
-    <li>
+    <li> 
       <a  href="https://www.notion.so/MENU-b8593595ca4a4ed28b27d01f7124e5be?pvs=4"
-      >Notion - Notas e documentação </a
+      >Notion - Notas e documentação </a  
+  </li>
+     <li>     
+       <a  href="https://www.notion.so/MENU-b8593595ca4a4ed28b27d01f7124e5be?pvs=4"
+      >Figman - Protótipo de baixa </a
   </li>
     </li>
     <li>
-      <a  href="https://www.notion.so/MENU-b8593595ca4a4ed28b27d01f7124e5be?pvs=4"
-      >Figman - Protótipo de baixa </a
+     <a  href="https://miro.com/welcomeonboard/V1ducjBMRk5OSzcxNFBEc2NYRFBmOEpsR1RFMDh2NmExOXBkdDV4SFdlb3A2Skg0SWFmT3JiS2N2Y1pSa09CanwzNDU4NzY0NTYyMzcwOTAzNjE1fDI=?share_link_id=537364375015"
+      >Miro - Projetos e ideação </a
   </li>
-
+    <li>
+      <a  href="https://trello.com/invite/b/66ea030e0cf26d2fc959e030/ATTI46a074c07e4dce24da4468e37e2adb82CA84158F/g9"
+      >Trelo - Quadros Kanban</a
+  </li>
 
 
   
