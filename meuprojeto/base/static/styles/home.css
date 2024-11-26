@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lexend', sans-serif;
-    background-color: #F5F5F5;
+    background-color: #d3d3d3;
     padding-top: 60px; /* Para evitar que o conteúdo fique atrás da navbar */
 }
 
@@ -11,79 +11,120 @@ body {
     height: 100vh; /* Altura total da tela */
 }
 
-/* Estilos da barra lateral */
-.sidebar {
+/* Estilo para o container de boas-vindas */
+.welcome-container {
+    display: flex; /* Usando flexbox para alinhar ícone e texto */
+    align-items: center; /* Alinha o ícone e o texto no centro verticalmente */
+    background-color: #DFC3FD; /* Cor de fundo do container */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 40px 60px; /* Espaçamento interno */
+    width: 80%; /* Largura do container */
+    max-width: 900px; /* Largura máxima do container */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin-top: 20px; /* Reduzir a margem superior para subir o container */
+    margin-left: auto; /* Centraliza o container na tela */
+    margin-right: auto; /* Centraliza o container na tela */
+}
+
+.welcome-icon {
+    font-size: 80px; /* Tamanho grande do ícone de usuário */
+    color: #400559; /* Cor do ícone */
+    margin-right: 40px; /* Espaçamento entre o ícone e o texto */
+}
+
+.welcome-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-text {
+    font-family: 'Lexend', sans-serif;
+    font-weight: normal; /* Texto em normal, não negrito */
+    font-size: 28px; /* Tamanho do texto "Bem-vindo(a)," */
+    color: #400559; /* Cor do texto */
+}
+
+.user-name {
+    font-family: 'Lexend', sans-serif;
+    font-weight: bold; /* Nome em negrito */
+    font-size: 36px; /* Tamanho maior do nome */
+    color: #400559; /* Cor do nome */
+    margin-top: 10px; /* Espaço entre "Bem-vindo(a)," e o nome */
+}
+
+/* Estilo para o bloco de calendário */
+.calendar-container {
+    width: 80%; /* Largura do container do calendário */
+    max-width: 900px; /* Largura máxima do container */
+    margin-top: 30px; /* Reduzir a margem superior para aproximar o calendário */
+    margin-left: auto; /* Centraliza o bloco de calendário */
+    margin-right: auto; /* Centraliza o bloco de calendário */
+    padding: 20px;
     background-color: #fff;
-    width: 220px;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-.logo-section {
-    margin-bottom: 50px;
-    text-align: center;
+/* Ajustes para o calendário */
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+/* Personalização dos botões do calendário */
+.fc-button {
+    background-color: #400559 !important; /* Cor de fundo do botão */
+    color: white !important; /* Cor do texto do botão */
+    border: none !important; /* Remover borda */
+    font-weight: bold; /* Fonte em negrito */
 }
 
-/* Estilos do conteúdo principal */
-.main-content {
-    flex-grow: 1;
-    background-color: #EAEAEA;
-    padding: 20px;
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
+.fc-button:hover {
+    background-color: #DFC3FD !important; /* Cor de fundo ao passar o mouse */
+    color: #400559 !important; /* Cor do texto ao passar o mouse */
 }
 
-/* Container da página inicial */
-.container {
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    height: calc(100vh - 60px); /* Altura total menos a navbar */
-    padding: 20px; /* Espaçamento interno */
+/* Para os botões de navegação (anterior e próximo) */
+.fc-prev-button, .fc-next-button {
+    background-color: #400559 !important;
+    color: white !important;
 }
 
-.welcome {
-    width: 100%;
-    max-width: 600px; /* Largura máxima do card */
+.fc-prev-button:hover, .fc-next-button:hover {
+    background-color: #DFC3FD !important;
+    color: #400559 !important;
 }
 
-.welcome-card {
-    background-color: white; /* Cor de fundo do card */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra do card */
-    padding: 30px; /* Espaçamento interno */
-    text-align: center; /* Centraliza o texto */
+/* Para o botão de "hoje" */
+.fc-today-button {
+    background-color: #400559 !important;
+    color: white !important;
 }
 
-.welcome-card h2 {
-    font-size: 24px; /* Tamanho da fonte do título */
-    color: #333; /* Cor do texto */
-}
-
-.welcome-card p {
-    font-size: 16px; /* Tamanho da fonte do parágrafo */
-    color: #666; /* Cor do texto secundário */
+.fc-today-button:hover {
+    background-color: #DFC3FD !important;
+    color: #400559 !important;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .welcome-card {
-        padding: 20px; /* Reduzir o padding em telas menores */
+    .welcome-container {
+        padding: 30px 40px; /* Reduzir o padding em telas menores */
     }
 
-    .welcome-card h2 {
-        font-size: 20px; /* Reduzir o tamanho do título em telas menores */
+    .welcome-icon {
+        font-size: 60px; /* Reduzir o tamanho do ícone em telas menores */
     }
 
-    .welcome-card p {
-        font-size: 14px; /* Reduzir o tamanho do texto em telas menores */
+    .welcome-text {
+        font-size: 22px; /* Reduzir o tamanho do texto "Bem-vindo(a)," em telas menores */
+    }
+
+    .user-name {
+        font-size: 28px; /* Reduzir o tamanho do nome em telas menores */
+    }
+
+    .calendar-container {
+        padding: 15px; /* Reduzir o padding do calendário em telas menores */
     }
 }
-
-

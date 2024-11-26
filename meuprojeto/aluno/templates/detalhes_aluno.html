@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Detalhes do Aluno
+{% endblock %}
+
+{% block content %}
+<h1>{{ aluno.nome_aluno }}</h1>
+
+<div class="card-container">
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Nome do Responsável:</strong> {{ aluno.nome_responsavel }}</p>
+            <p><strong>Número do Responsável:</strong> {{ aluno.numero_responsavel }}</p>
+            <p><strong>Email do Responsável:</strong> {{ aluno.email_responsavel }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ aluno.data_nascimento|date:"d/m/Y" }}</p>
+            <p><strong>Colocação Geral:</strong> #{{ aluno.colocacao_geral }}</p>
+            <p><strong>Turmas:</strong></p>
+            <ul>
+                {% for turma in aluno.turmas.all %}
+                    <li>{{ turma.nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+</div>
+</div>
+{% endblock %}

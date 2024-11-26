@@ -3,36 +3,46 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<style>
-    .content {
-        display: flex;
-        justify-content: center; /* Centraliza horizontalmente */
-        align-items: center; /* Centraliza verticalmente */
-        height: calc(100vh - 60px); /* Altura total menos a navbar */
-        padding-left: 220px; /* Largura da sidebar */
-        padding-right: 20px; /* Espaçamento à direita */
-        overflow: hidden; /* Evita rolagem */
-    }
-
-    .greeting {
-        background-color: white; /* Cor de fundo */
-        border-radius: 10px; /* Bordas arredondadas */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
-        padding: 20px; /* Espaçamento interno */
-        text-align: center; /* Centraliza o texto */
-        max-width: 400px; /* Largura máxima */
-        width: 100%; /* Permite que o card ocupe espaço total até a largura máxima */
-    }
-
-    .greeting h2 {
-        font-size: 24px; /* Tamanho do título */
-        color: #333; /* Cor do texto */
-    }
-</style>
-
 <div class="content">
-    <div class="greeting">
-        <h2>Olá, {{ user.username }}!</h2>
+    <!-- Container de boas-vindas -->
+    <div class="welcome-container">
+        <i class="fas fa-user welcome-icon"></i> <!-- Ícone de usuário -->
+        <div class="welcome-text-container">
+            <span class="welcome-text">Bem-vindo(a),</span> <!-- Texto "Bem-vindo(a)," -->
+            <span class="user-name">{{ user.username }}</span> <!-- Nome do funcionário -->
+        </div>
+    </div>
+
+    <!-- Bloco de calendário -->
+    <div class="calendar-container">
+        <div id="calendar"></div>
     </div>
 </div>
+
+<!-- FullCalendar CDN -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', // Exibe o calendário por mês
+            headerToolbar: {
+                left: 'prev,next today', // Navegação do calendário
+                center: 'title', // Título centralizado
+                right: 'dayGridMonth, timeGridWeek, timeGridDay' // Exibe diferentes visualizações
+            },
+            events: [
+                {
+
+                },
+                {
+
+                }
+            ]
+        });
+        calendar.render();
+    });
+</script>
 {% endblock %}

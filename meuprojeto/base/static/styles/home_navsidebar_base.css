@@ -10,15 +10,16 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 60px; /* Ajuste conforme a altura da navbar */
-    background-color: #f0f0f0; /* Cor de fundo da página */
+    background-color: #b6b6b6; /* Cor de fundo da página */
 }
 
+/* Estilos para a navbar */
 .navbar {
     position: fixed; /* Fixa a navbar na parte superior */
     top: 0; /* Alinha a navbar ao topo da página */
     left: 0; /* Alinha à esquerda */
     width: 100%; /* Ocupa a largura total da tela */
-    background-color: #EDECE6; /* Cor de fundo */
+    background-color: white; /* Cor de fundo */
     color: black; /* Cor do texto */
     padding: 10px; /* Espaçamento interno */
     display: flex; /* Para usar flexbox */
@@ -34,6 +35,17 @@ body {
     margin-right: 20px; /* Ajuste para garantir que fique dentro da tela */
 }
 
+/* Ajustando o espaçamento entre os ícones da navbar */
+.navbar-actions .home-icon, .navbar-actions .user-icon {
+    margin-left: 20px; /* Aumenta o espaçamento entre os ícones */
+    font-size: 24px; /* Tamanho dos ícones */
+}
+
+.navbar-actions .home-icon i, .navbar-actions .user-icon i {
+    color: #400559; /* Cor dos ícones */
+}
+
+/* Estilo dos botões de menu */
 .menu-button {
     background-color: transparent; /* Fundo transparente */
     color: black; /* Cor do ícone */
@@ -45,7 +57,7 @@ body {
 }
 
 .menu-button:hover {
-    color: #48d34c; /* Cor do ícone ao passar o mouse */
+    color: #400559; /* Cor do ícone ao passar o mouse */
 }
 
 .logout-button {
@@ -62,24 +74,20 @@ body {
     color: #e74c3c; /* Cor do ícone ao passar o mouse */
 }
 
-.username {
-    font-family: 'Lexend', sans-serif; /* Aplica a fonte Lexend */
-    font-weight: bold; /* Para dar um destaque ao nome */
-    margin-left: 10px; /* Espaçamento à esquerda do nome */
-    text-transform: uppercase; /* Converte o texto para maiúsculas */
-    color: black; /* Cor do texto */
-}
-
+/* Estilos para a sidebar */
 .sidebar {
     position: fixed;
     top: 60px; /* Inicia abaixo da navbar */
     left: 0; /* A sidebar agora está sempre visível */
     width: 60px; /* largura quando recolhida */
     height: calc(100% - 60px); /* Altura total menos a navbar */
-    background-color: #F6F6F6;
+    background-color: #400559;
     color: white;
-    transition: width 0.3s; /* transição suave para largura */
+    transition: width 0.3s; /* Transição suave para largura */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra na sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha todos os itens à esquerda */
 }
 
 .sidebar.open {
@@ -89,38 +97,46 @@ body {
 .sidebar ul {
     list-style-type: none;
     padding: 0;
+    width: 100%; /* Garante que a lista ocupe toda a largura disponível */
 }
 
 .sidebar ul li {
     padding: 15px 0; /* Aumenta o espaçamento vertical */
     margin-bottom: 10px; /* Ajusta o espaçamento entre os tópicos */
-    text-align: center; /* Centraliza o texto quando a sidebar está fechada */
-    padding-left: 15px; /* Distanciamento à esquerda quando inativa */
+    text-align: left; /* Alinha à esquerda os itens quando a sidebar estiver aberta */
+    width: 100%; /* Garante que o item ocupe toda a largura da sidebar */
 }
 
-.sidebar ul li.open {
+.sidebar.open ul li {
     text-align: left; /* Alinha à esquerda quando a sidebar está aberta */
 }
 
 .sidebar ul li a {
-    color: black;
+    color: white; /* Cor do texto e ícones padrão na sidebar */
     text-decoration: none;
     display: flex;
-    align-items: center; /* Alinha verticalmente */
+    align-items: center; /* Alinha verticalmente os ícones e o texto */
+    justify-content: flex-start; /* Alinha os ícones e texto à esquerda */
+    width: 100%; /* Faz com que o link ocupe toda a área do item */
+    padding-left: 20px; /* Distância da borda esquerda quando a sidebar está aberta */
 }
 
-.sidebar ul li .text {
-    display: none; /* esconde o texto inicialmente */
-    font-family: 'Lexend', sans-serif; /* Aplica a fonte Lexend */
-}
-
-.sidebar.open ul li .text {
-    display: inline; /* mostra o texto quando a sidebar está aberta */
-}
-
+/* Ícones e texto alinhados à esquerda quando a sidebar está fechada */
 .sidebar ul li .icon {
-    margin-right: 10px; /* espaço entre ícone e texto */
     font-size: 24px; /* Aumenta o tamanho do ícone */
+    color: white; /* Garantindo que os ícones sejam brancos */
+}
+
+/* Texto será invisível, mas não alterará o layout */
+.sidebar ul li .text {
+    display: none; /* Esconde o texto quando a sidebar está fechada */
+    color: white; /* Cor do texto */
+}
+
+/* Quando a sidebar estiver aberta, o texto aparecerá ao lado do ícone */
+.sidebar.open ul li .text {
+    display: inline-block; /* Exibe o texto ao lado dos ícones */
+    margin-left: 10px; /* Distância entre o ícone e o texto */
 }
 
 /* Estilos para o dropdown */
@@ -133,7 +149,7 @@ body {
 
 .sidebar.open ul li.active .dropdown {
     display: block; /* Mostra o dropdown quando ativo e a sidebar está aberta */
-    background-color: #F6F6F6; /* Azul piscina claro */
+    background-color: #400559; /* Azul piscina claro */
     border-radius: 5px; /* Bordas arredondadas */
 }
 
@@ -175,12 +191,12 @@ body {
     display: block; /* Para centralizar o logo */
     font-size: 15px; /* Tamanho da fonte do "T" */
     font-weight: bold; /* Negrito */
-    color: black; /* Cor do "T" */
+    color: white; /* Cor do "T" */
     text-align: center; /* Centraliza o "T" */
 }
 
 .sidebar ul li .text {
-    color: black; /* Cor do título "TESKI" */
+    color: white; /* Cor do título "TESKI" */
     display: none; /* Esconde o texto quando a sidebar está fechada */
     font-family: 'Lexend', sans-serif; /* Aplica a fonte Lexend */
 }
@@ -189,9 +205,8 @@ body {
     display: inline; /* Mostra o texto quando a sidebar está aberta */
 }
 
-/* Estilos para as setinhas */
 .sidebar ul li a .arrow {
-    margin-left: 5px; /* Distância entre o texto e a setinha */
+    margin-left: 5px; /* Distância maior entre o texto e a setinha */
     display: none; /* Esconde as setinhas inicialmente */
     transition: transform 0.3s, color 0.3s; /* Transição suave */
 }
@@ -202,11 +217,11 @@ body {
 
 .sidebar ul li.active a .arrow {
     transform: rotate(180deg); /* Roda a setinha para cima */
-    color: #48d34c; /* Muda a cor da setinha para verde */
+    color: #DFC3FD; /* Muda a cor da setinha para verde */
 }
 
 .sidebar ul li.active a .text {
-    color: #48d34c; /* Muda a cor do texto para verde */
+    color: #DFC3FD; /* Muda a cor do texto para verde */
 }
 
 /* Esconde a dropdown quando a sidebar não está aberta */
@@ -215,7 +230,16 @@ body {
 }
 
 .menu-button.active {
-    color: #48d34c; /* Cor verde quando ativo */
+    color: #400559; /* Cor verde quando ativo */
 }
 
+/* Estilo do ícone da casa */
+.navbar-actions .home-icon a i {
+    color: #400559; /* Cor inicial */
+    font-size: 24px; /* Tamanho do ícone */
+    transition: color 0.3s; /* Transição suave da cor */
+}
 
+.navbar-actions .home-icon a:hover i {
+    color: #DFC3FD; /* Cor ao passar o mouse */
+}

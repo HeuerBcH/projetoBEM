@@ -15,43 +15,85 @@
             <div class="form-group">
                 <label for="id_nome_aluno">{{ form.nome_aluno.label }}</label>
                 {{ form.nome_aluno }}
-                {{ form.nome_aluno.errors }}
+                {% if form.nome_aluno.errors %}
+                    <div class="error-message">
+                        {% for error in form.nome_aluno.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label for="id_matricula">{{ form.matricula.label }}</label>
                 {{ form.matricula }}
-                {{ form.matricula.errors }}
+                {% if form.matricula.errors %}
+                    <div class="error-message">
+                        {% for error in form.matricula.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label for="id_data_nascimento">{{ form.data_nascimento.label }}</label>
                 {{ form.data_nascimento }}
-                {{ form.data_nascimento.errors }}
+                {% if form.data_nascimento.errors %}
+                    <div class="error-message">
+                        {% for error in form.data_nascimento.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label>Selecione as Turmas:</label>
                 {{ form.turmas }}
-                {{ form.turmas.errors }}
+                {% if form.turmas.errors %}
+                    <div class="error-message">
+                        {% for error in form.turmas.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label for="id_nome_responsavel">{{ form.nome_responsavel.label }}</label>
                 {{ form.nome_responsavel }}
-                {{ form.nome_responsavel.errors }}
+                {% if form.nome_responsavel.errors %}
+                    <div class="error-message">
+                        {% for error in form.nome_responsavel.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label for="id_numero_responsavel">{{ form.numero_responsavel.label }}</label>
                 {{ form.numero_responsavel }}
-                {{ form.numero_responsavel.errors }}
+                {% if form.numero_responsavel.errors %}
+                    <div class="error-message">
+                        {% for error in form.numero_responsavel.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label for="id_email_responsavel">{{ form.email_responsavel.label }}</label>
                 {{ form.email_responsavel }}
-                {{ form.email_responsavel.errors }}
+                {% if form.email_responsavel.errors %}
+                    <div class="error-message">
+                        {% for error in form.email_responsavel.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
             <button type="submit" class="btn btn-primary">Adicionar</button>

@@ -9,6 +9,11 @@
         </form>
     </div>
     <div class="navbar-actions">
-        <span class="username">Olá, {{ user.username|upper }}</span> <!-- Nome do usuário em maiúsculas -->
+        <!-- Ícone de casa com link para a home -->
+        <span class="home-icon">
+            <a href="{% url 'home' %}">
+                <i class="fas fa-home" style="color: #400559;"></i> <!-- Ícone de casa -->
+            </a>
+        </span>
     </div>
 </nav>

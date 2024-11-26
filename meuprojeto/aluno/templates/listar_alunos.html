@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
     Listar Alunos
@@ -7,31 +7,83 @@
 {% block content %}
 <h1>LISTA DE ALUNOS</h1>
 
-<!-- Formulário de Filtro -->
-<form method="GET" action="{% url 'listar_alunos' %}" class="filtro-form">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" placeholder="Nome" value="{{ request.GET.nome }}">
+<style>
+/* Estilos gerais para o formulário de filtro */
+.filtro-form-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #d3d3d3; /* Fundo cinza claro */
+    border-radius: 5px;
+}
 
+.filtro-form {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre os elementos */
+}
 
-    <label for="turma">Turma:</label>
-    <input type="text" id="turma" name="turma" placeholder="Turma" value="{{ request.GET.turma }}">
+.filtro-form label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px; /* Espaço entre o label e o campo */
+}
 
-    <button type="submit" class="filtro-button">Filtrar</button>
-</form>
+.filtro-form input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+}
 
-<div class="card-container"> <!-- Alterado para usar card-container -->
+.filtro-button {
+    background-color: #400559;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filtro-button:hover {
+    background-color: #320445;
+}
+</style>
+
+<div class="filtro-form-container">
+    <form method="GET" action="{% url 'listar_alunos' %}" class="filtro-form">
+        <div class="filtro-item">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="" value="{{ request.GET.nome }}">
+        </div>
+        <div class="filtro-item">
+            <label for="turma">Turma:</label>
+            <input type="text" id="turma" name="turma" placeholder="" value="{{ request.GET.turma }}">
+        </div>
+        <button type="submit" class="filtro-button">Filtrar</button>
+    </form>
+</div>
+
+<div class="card-container">
     {% for aluno in alunos %}
-    <div class="card"> <!-- Alterado para usar a classe card -->
-        <h3>{{ aluno.nome_aluno }}</h3>
-        <p><strong>Situação:</strong> {{ aluno.matricula|yesno:"Matriculado,Não Matriculado" }}</p>
-        <p><strong>Nascimento:</strong> {{ aluno.data_nascimento }}</p>
-        <p><strong>Colocação Geral:</strong> {{ aluno.colocacao_geral }}</p>
-        <p><strong>Turmas:</strong> 
-            {% for turma in aluno.turmas.all %}
-                <span style="background-color: #f0f0f0; padding: 3px 5px; border-radius: 4px; margin-right: 5px;">{{ turma.nome }}</span>
-            {% endfor %}
-        </p>
-        <a href="{% url 'editar_aluno' aluno.pk %}" class="dados-button">Editar</a>  <!-- Botão de edição -->
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ aluno.nome_aluno }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Situação:</strong> {{ aluno.matricula|yesno:"Matriculado,Não Matriculado" }}</p>
+            <p><strong>Nascimento:</strong> {{ aluno.data_nascimento|date:"d/m/Y" }}</p>
+            <p><strong>Turmas:</strong> 
+                {% for turma in aluno.turmas.all %}
+                    <span class="turma-badge">{{ turma.nome }}</span>
+                {% endfor %}
+            </p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'editar_aluno' aluno.pk %}" class="dados-button">Editar</a>
+        </div>
     </div>
     {% empty %}
     <div class="card">
@@ -39,4 +91,5 @@
     </div>
     {% endfor %}
 </div>
+
 {% endblock %}
