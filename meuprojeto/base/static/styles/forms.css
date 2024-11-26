@@ -20,14 +20,14 @@ body {
     padding: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    max-width: 600px; /* Aumentar o tamanho máximo para adequar ao formulário */
+    max-width: 800px; /* Aumentar o tamanho máximo para adequar ao formulário */
     width: 100%;
 }
 
 /* Estilos dos campos do formulário */
 .form-title {
     font-size: 35px; /* Tamanho da fonte */
-    color: #333; /* Cor do texto */
+    color: #400559; /* Cor do texto */
     margin-bottom: 20px; /* Espaçamento abaixo do título */
     text-align: center; /* Alinhamento central */
     font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
@@ -64,7 +64,7 @@ body {
 
 /* Espaçamento uniforme para o botão */
 .btn-primary {
-    background-color: #007bff;
+    background-color: #400559;
     color: #fff;
     padding: 12px; /* Manter o padding igual ao dos inputs */
     font-size: 16px;
@@ -78,7 +78,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #552669;
 }
 
 /* Estilos para dispositivos menores */
@@ -109,7 +109,7 @@ body {
 
 .form-box h1 {
     font-size: 35px; /* Tamanho da fonte */
-    color: #333; /* Cor do texto */
+    color: #400559; /* Cor do texto */
     margin-bottom: 30px; /* Espaçamento abaixo do título */
     text-align: center; /* Alinhamento central */
     font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
@@ -164,7 +164,7 @@ body {
 }
 
 .card-footer .ver-detalhes-button {
-    background-color: #007bff;
+    background-color: #400559;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -173,5 +173,5 @@ body {
 }
 
 .card-footer .ver-detalhes-button:hover {
-    background-color: #0056b3;
+    background-color: #400559;
 }

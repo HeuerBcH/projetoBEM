@@ -2,82 +2,148 @@
 
 /* Reset básico */
 body {
-    font-family: 'Lexend', sans-serif; /* Usando Lexend */
-    background-color: #f0f0f0; /* Cor de fundo da página */
+    font-family: 'Lexend', sans-serif; /* Fonte elegante e limpa */
+    background-color: #d3d3d3; /* Cor de fundo suave */
     margin: 0;
-    padding: 20px; /* Mantém padding uniforme */
-    padding-top: 60px; /* Espaço para a navbar */
+    padding-left: 560px;
+    padding-right: 500px;
+    padding-top: 60px; /* Espaço para um possível menu fixo */
 }
 
-.info-turma,
-.alunos-turma {
-    max-width: 800px; /* Largura máxima para centralizar o conteúdo */
-    margin: 20px auto; /* Centraliza o conteúdo */
+/* Estilo geral para contêineres */
+.container {
+    max-width: 600px; /* Diminuído para 600px */
+    margin: 0 auto; /* Centraliza na página */
     padding: 20px;
-    background-color: #fff; /* Fundo branco */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-.info-turma h1, 
-.info-turma h2, 
-.alunos-turma h2, 
-.info-turma p {
-    text-align: center; /* Centraliza o texto */
-    margin: 10px 0; /* Margens uniformes */
+/* Estilo da seção de informações da turma */
+.info-turma {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza os textos */
 }
 
 .info-turma h1 {
-    font-size: 2.5em;
+    font-size: 2.8em;
     color: #333;
-}
-
-.alunos-turma h2 {
-    font-size: 2em;
-    color: #444;
-    text-align: center;
-    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .info-turma p {
     font-size: 1.2em;
-    color: #666;
+    color: #555;
+    line-height: 1.6;
+    margin: 10px 0;
 }
 
 .info-turma strong {
     color: #222;
 }
 
-.alunos-turma ul {
-    list-style-type: none; /* Remove os marcadores */
-    padding: 0;
+/* Estilo para a tabela de alunos */
+.alunos-turma {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
 }
 
-.alunos-turma ul li {
-    background-color: #f0f0f0; /* Fundo claro para os itens da lista */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 5px 0;
+.alunos-turma h2 {
+    font-size: 2em;
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tabela estilizada */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    table-layout: fixed; /* Faz com que todas as células tenham o mesmo tamanho */
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    word-wrap: break-word; /* Quebra palavras grandes */
+}
+
+th {
+    background-color: #400559;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center; /* Centraliza o texto nos cabeçalhos */
+}
+
+td {
+    text-align: center; /* Centraliza o conteúdo das células */
+}
+
+/* Melhorando a largura da tabela */
+th:nth-child(1), td:nth-child(1) {
+    width: 30%; /* Coluna 1 (nome) mais estreita */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 30%; /* Coluna 2 (data de nascimento) com largura semelhante */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 40%; /* Coluna 3 (outros dados, se houver) mais larga */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
     transition: background-color 0.3s;
 }
 
-.alunos-turma ul li:hover {
-    background-color: #e0e0e0; /* Altera a cor ao passar o mouse */
-}
-
+/* Botão voltar */
 .alunos-turma a {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50; /* Cor do botão */
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 25px;
+    background-color: #400559;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.1em;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .alunos-turma a:hover {
-    background-color: #45a049; /* Cor do botão ao passar o mouse */
+    background-color: #400559;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .info-turma, .alunos-turma {
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 0.9em;
+        padding: 8px; /* Menos padding para ajustar melhor */
+    }
+
+    .info-turma h1, .alunos-turma h2 {
+        font-size: 1.8em;
+    }
+
+    table {
+        table-layout: auto; /* Adapta automaticamente para telas menores */
+    }
 }

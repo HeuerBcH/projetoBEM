@@ -50,25 +50,23 @@
         margin-bottom: 20px;
     }
 
-    /* Estilo para o botão "Enviar todas as notas" */
-    .btn-enviar-todas {
-        padding: 10px 20px;
-        background-color: #28a745;
-        color: white;
-        border: none;
+    .sort-container select {
+        padding: 8px;
+        font-size: 1em;
         border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;  /* Distância do conteúdo acima */
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s;
     }
 
-    .btn-enviar-todas:hover {
-        background-color: #218838;
+    .sort-container select:focus {
+        border-color: #4CAF50; /* Cor de borda ao focar */
     }
 
     /* Estilo para o botão "Enviar" */
     .btn-enviar {
         padding: 5px 10px;
-        background-color: #28a745;
+        background-color: #400559;
         color: white;
         border: none;
         border-radius: 5px;
@@ -76,7 +74,7 @@
     }
 
     .btn-enviar:hover {
-        background-color: #218838;
+        background-color: #885b9b;
     }
 
     /* Estilo para os campos de notas editáveis */
@@ -84,19 +82,57 @@
         width: 80px;
         padding: 5px;
     }
+
+    /* Estilo para as informações do Simulado */
+    .info-simulado {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .info-simulado h1 {
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .info-simulado p {
+        font-size: 1.2em;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    .info-simulado strong {
+        color: #222;
+    }
+    
+    .info-simulado .label {
+        font-weight: 600;
+        color: #333;
+        text-transform: uppercase;
+    }
+
 </style>
 
 <div class="form-container">
     <div class="form-box">
-        <h1>{{ simulado.nome }}</h1>
-        <p><strong>Turma:</strong> {{ turma.nome }}</p>
-        <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
+        <div class="info-simulado">
+            <h1>{{ simulado.nome }}</h1>
+            <br>
+            <p><span class="label"><strong>{{ turma.nome }}</strong></span></p>
+            <p><span class="label"><strong>{{ simulado.data_inicio }}</strong></span></p>
+        </div>
 
         <br><br>
+
         <!-- Caixa de seleção para ordenar os alunos -->
         <div class="sort-container">
             <form method="GET" action="">
-                <label for="sort">Ordenar por:</label>
+                <label for="sort" style="margin-right: 10px;"><strong>Ordenar por:</strong></label>
                 <select name="sort" id="sort" onchange="this.form.submit()">
                     <option value="alfabetica" {% if request.GET.sort == "alfabetica" %}selected{% endif %}>Alfabética</option>
                     <option value="idade" {% if request.GET.sort == "idade" %}selected{% endif %}>Idade</option>
@@ -132,13 +168,13 @@
                                         min="0" 
                                         max="10"
                                         class="editable"
-                                        disabled
+                                        {% if not resultado.nota %}disabled{% endif %}
                                     >
                                 </td>
                                 <td>{{ resultado.posicao }}</td>
                                 <td>
-                                    <!-- Botão "Enviar" fictício -->
-                                    <button type="button" class="btn-enviar">Enviar</button>
+                                    <!-- Botão "Enviar" -->
+                                    <button type="submit" class="btn-enviar" {% if resultado.nota == 0 %}disabled{% endif %}>Enviar</button>
                                 </td>
                             </tr>
                         {% empty %}
@@ -149,7 +185,6 @@
                     </tbody>
                 </table>
             </div>
-
         </form>
     </div>
 </div>
