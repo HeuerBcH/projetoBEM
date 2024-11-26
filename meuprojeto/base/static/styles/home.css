@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lexend', sans-serif;
-    background-color: #F5F5F5;
+    background-color: #d3d3d3;
     padding-top: 60px; /* Para evitar que o conteúdo fique atrás da navbar */
 }
 

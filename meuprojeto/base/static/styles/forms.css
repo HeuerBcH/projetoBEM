@@ -1,13 +1,22 @@
 /* Centralizar o formulário na página */
+body {
+    background-color: #a8a8a8;
+
+
+
+
+
+}
 .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px; /* Adicionar padding para garantir que fique responsivo */
+    
 }
 
 .form-box {
-    background-color: #FFFFFF;
+    background-color: #c1c1c1;
     padding: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -37,6 +46,7 @@
     color: #333;
     margin-bottom: 5px;
     font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
+    
 }
 
 .form-group input,
@@ -47,7 +57,7 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #F9F9F9;
+    background-color: #b7b7b7;
     box-sizing: border-box; /* Garante que padding e border sejam incluídos no width */
     font-family: 'Lexend', 'sans-serif'; /* Aplica a fonte Lexend */
 }

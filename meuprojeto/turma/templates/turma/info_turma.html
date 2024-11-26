@@ -18,7 +18,7 @@
         <h2>Alunos Matriculados:</h2>
         <ul>
             {% for aluno in turma.alunos.all %}
-                <li>{{ aluno }}</li>
+                <li>{{ aluno.nome_aluno }}</li>
             {% empty %}
                 <li>Nenhum aluno matriculado.</li>
             {% endfor %}
