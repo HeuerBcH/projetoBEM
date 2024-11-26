@@ -61,9 +61,9 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 <br>
 
-### Screencast Aplicação Web 
+### Screencast Aplicação Web 01
 <a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
-  <img src="screncast01.png" width="500" />
+  <img src="media/imagens/screncast01.png" width="450" />
 </a>
 
 <br> 
@@ -71,9 +71,9 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 <p> Clique na imagem para ser redirecionado para o vídeo </p>
 
 
-### Diagrama de classes UML 
+### Diagrama de classes UML 01
 <a href="https://lucid.app/lucidchart/64ce876e-c782-4bbc-a0b0-6c0d9b860745/edit?viewport_loc=-8735%2C-15476%2C3547%2C1741%2C0_0&invitationId=inv_d674a5f9-99f4-4faf-9a31-6cac564701f4">
-  <img src="diagrama de classes01.png" width="500" />
+  <img src="media/imagens/diagrama de classes01.png" width="450" />
 </a>
 
 <br> 
@@ -85,9 +85,9 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 ## ✅ Status Report 2
 
 
-### Screencast Aplicação Web 
+### Screencast Aplicação Web 02
 <a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
-  <img src="screncast01.png" width="500" />
+  <img src="media/imagens/printBEM.PNG" width="450" />
 </a>
 
 <br> 
@@ -95,9 +95,9 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 <p> Clique na imagem para ser redirecionado para o vídeo </p>
 
 
-### Diagrama de classes UML 
-<a href="https://lucid.app/lucidchart/64ce876e-c782-4bbc-a0b0-6c0d9b860745/edit?viewport_loc=-8735%2C-15476%2C3547%2C1741%2C0_0&invitationId=inv_d674a5f9-99f4-4faf-9a31-6cac564701f4">
-  <img src="diagrama de classes01.png" width="500" />
+### Diagrama de classes UML 02
+<a href="https://lucid.app/lucidchart/00180eab-53c7-4d31-9a18-9e9661c408cc/edit?view_items=YCzud~_PgDN3&invitationId=inv_4c918876-b716-4ccd-b4d4-9e2f85162ba8">
+  <img src="media/imagens/UMlTESKI.png" width="450" />
 </a>
 
 <br> 
