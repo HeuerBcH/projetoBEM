@@ -44,6 +44,7 @@ def listar_simulados(request):
     })
  
 
+@login_required
 def info_simulado(request, simulado_id):
     simulado = get_object_or_404(Simulado, id=simulado_id)
     turma = simulado.turma
@@ -62,6 +63,7 @@ def info_simulado(request, simulado_id):
     resultados = ResultadoSimulado.objects.filter(simulado=simulado)
     todos_com_nota = len(resultados) == alunos.count()
 
+    # Se todos os alunos tiverem nota, calcular o ranking
     ranking_dict = {}
     if todos_com_nota:
         resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
@@ -82,6 +84,7 @@ def info_simulado(request, simulado_id):
         # Redirecionar para a página de informações do simulado após salvar as alterações
         return redirect('info_simulado', simulado_id=simulado.id)
 
+    # Construir a lista de alunos com os resultados e o ranking
     alunos_com_resultados = []
     for aluno in alunos:
         resultado = resultados.filter(aluno=aluno).first()
@@ -98,6 +101,7 @@ def info_simulado(request, simulado_id):
         'todos_com_nota': todos_com_nota,
         'sort_option': sort_option
     })
+
 
 @login_required
 def excluir_simulado(request, simulado_id):

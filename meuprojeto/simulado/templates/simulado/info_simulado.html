@@ -160,16 +160,20 @@
                                 <td>{{ resultado.aluno.nome_aluno }}</td>
                                 <td>
                                     <!-- Campo editável para a nota -->
-                                    <input 
-                                        type="number" 
-                                        name="notas_{{ resultado.aluno.id }}" 
-                                        value="{{ resultado.nota }}" 
-                                        step="0.01" 
-                                        min="0" 
-                                        max="10"
-                                        class="editable"
-                                        {% if not resultado.nota %}disabled{% endif %}
-                                    >
+                                    {% if not todos_com_nota %}
+                                        <input 
+                                            type="number" 
+                                            name="notas_{{ resultado.aluno.id }}" 
+                                            value="{{ resultado.nota }}" 
+                                            step="0.01" 
+                                            min="0" 
+                                            max="10"
+                                            class="editable"
+                                            {% if resultado.nota %}disabled{% endif %}
+                                        >
+                                    {% else %}
+                                        {{ resultado.nota }}
+                                    {% endif %}
                                 </td>
                                 <td>{{ resultado.posicao }}</td>
                                 <td>
@@ -185,6 +189,11 @@
                     </tbody>
                 </table>
             </div>
+
+            {% if not todos_com_nota %}
+                <!-- Botão Finalizar para submeter as notas -->
+                <button type="submit" name="finalizar" class="btn btn-primary">Finalizar</button>
+            {% endif %}
         </form>
     </div>
 </div>
