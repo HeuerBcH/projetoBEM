@@ -67,6 +67,10 @@
     width: 45%; /* Limita a largura para que o texto ocupe menos espaço */
 }
 
+
+
+
+
 /* Estilo para as badges de turmas */
 .card-body .turma-badge {
     background-color: #f0f0f0; /* Cor de fundo das turmas */
@@ -174,6 +178,13 @@ h1 {
         height: 150px; /* Ajusta a altura dos cards em telas pequenas */
     }
 
+    .filtro-form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px; /* Espaçamento abaixo do formulário */
+    }
+
     .filtro-form {
         flex-direction: column;
         align-items: center;
@@ -182,9 +193,81 @@ h1 {
     .filtro-form input {
         width: 100%; /* Entradas de filtro ocupando toda a largura disponível */
         margin-bottom: 10px;
+        display: flex;
+        gap: 10px;
     }
 
     .filtro-button {
         width: 100%;
+        background-color: #400559; /* Cor de fundo */
+        color: white; /* Cor do texto */
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px; /* Ajuste no tamanho */
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .filtro-button:hover {
+        background-color: #DFC3FD; /* Cor ao passar o mouse */
+        color: #400559;
+        transform: scale(1.05); /* Leve aumento */
     }
 }
+
+.detalhes-button {
+    background-color: #400559; /* Cor de fundo para o botão */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.detalhes-button:hover {
+    background-color: #DFC3FD; /* Cor ao passar o mouse */
+    color: #400559;
+    transform: scale(1.05); /* Leve aumento */
+}
+
+.filtro-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Espaçamento abaixo do formulário */
+}
+
+.filtro-form {
+    flex-direction: column;
+    align-items: center;
+}
+
+.filtro-form input {
+    width: 100%; /* Entradas de filtro ocupando toda a largura disponível */
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.filtro-button {
+    width: 100%;
+    background-color: #400559; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px; /* Ajuste no tamanho */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.filtro-button:hover {
+    background-color: #DFC3FD; /* Cor ao passar o mouse */
+    color: #400559;
+    transform: scale(1.05); /* Leve aumento */
+}
+

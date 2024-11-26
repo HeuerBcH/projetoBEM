@@ -15,18 +15,20 @@ def adicionar_aluno(request):
 
 
 def listar_alunos(request):
-    nome = request.GET.get('nome')
-    idade = request.GET.get('idade')
-    turma = request.GET.get('turma')
+    nome = request.GET.get('nome', '').strip()  # Captura o valor do filtro de nome
+    turma = request.GET.get('turma', '').strip()  # Captura o valor do filtro de turma
 
     alunos = Aluno.objects.all()
 
     # Aplica os filtros, se valores existirem
     if nome:
-        alunos = alunos.filter(nome_alunoicontains=nome)  # Corrigido o nome do campo
+        alunos = alunos.filter(nome_aluno__icontains=nome)  # Filtro de nome
 
     if turma:
-        alunos = alunos.filter(turmasnome__icontains=turma)
+        alunos = alunos.filter(turmas__nome__icontains=turma)  # Filtro de turma
+
+    # Evita duplicados no caso de ManyToManyField
+    alunos = alunos.distinct()
 
     return render(request, 'listar_alunos.html', {'alunos': alunos})
 
