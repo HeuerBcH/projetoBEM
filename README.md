@@ -67,9 +67,8 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 ## ✅ Status Report 1
 
-<h2><b>SPRINT 1</b></h2>
+<h2><b>🎯 SPRINT 1</b></h2>
 
-<br>
 
 ### 💻 Screencast Aplicação Web 01
 <a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
@@ -93,6 +92,8 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 <br>
 
 ## ✅ Status Report 2
+
+<h2><b>🎯 SPRINT 2</b></h2>
 
 
 ### 💻 Screencast Aplicação Web 02
