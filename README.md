@@ -35,7 +35,7 @@ Essa aplicação foi criada para atender às necessidades específicas do client
       >Notion - Notas e documentação </a  
   </li>
      <li>     
-       <a  href="https://www.notion.so/MENU-b8593595ca4a4ed28b27d01f7124e5be?pvs=4"
+       <a  href="https://www.figma.com/design/ozgilRFhvTjVBS7eAkUyiQ/G9-(Copy)?node-id=2088-484&node-type=canvas&t=6eQPPkrWGbz3hvK1-0"
       >Figman - Protótipo de baixa </a
   </li>
     </li>
