@@ -50,18 +50,33 @@
         margin-bottom: 20px;
     }
 
-    /* Estilo para o botão editar */
-    .btn-editar {
-        margin-bottom: 20px;
+    /* Estilo para o botão "Enviar todas as notas" */
+    .btn-enviar-todas {
         padding: 10px 20px;
-        background-color: #007bff;
+        background-color: #28a745;
         color: white;
         border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;  /* Distância do conteúdo acima */
+    }
+
+    .btn-enviar-todas:hover {
+        background-color: #218838;
+    }
+
+    /* Estilo para o botão "Enviar" */
+    .btn-enviar {
+        padding: 5px 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
         cursor: pointer;
     }
 
-    .btn-editar:hover {
-        background-color: #0056b3;
+    .btn-enviar:hover {
+        background-color: #218838;
     }
 
     /* Estilo para os campos de notas editáveis */
@@ -90,9 +105,6 @@
             </form>
         </div>
 
-        <!-- Botão Editar -->
-        <button class="btn-editar" id="editar-btn">Editar</button>
-
         <!-- Formulário para editar as notas dos alunos -->
         <form method="POST" action="" id="form-notas">
             {% csrf_token %}
@@ -103,6 +115,7 @@
                             <th>Nome dos Alunos</th>
                             <th>Nota</th>
                             <th>Ranking</th>
+                            <th>WhatsApp</th> <!-- Nova coluna para o WhatsApp -->
                         </tr>
                     </thead>
                     <tbody>
@@ -123,22 +136,27 @@
                                     >
                                 </td>
                                 <td>{{ resultado.posicao }}</td>
+                                <td>
+                                    <!-- Botão "Enviar" fictício -->
+                                    <button type="button" class="btn-enviar">Enviar</button>
+                                </td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td colspan="3">Nenhum aluno registrado para este simulado.</td>
+                                <td colspan="4">Nenhum aluno registrado para este simulado.</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+
         </form>
     </div>
 </div>
 
 <script>
     // Função para ativar os campos de edição
-    document.getElementById('editar-btn').addEventListener('click', function() {
+    document.getElementById('editar-btn')?.addEventListener('click', function() {
         let inputs = document.querySelectorAll('.editable');
         inputs.forEach(input => {
             input.disabled = false; // Habilita os campos de nota
