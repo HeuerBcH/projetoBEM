@@ -1,30 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Listar Turmas
+    Informações da Turma
 {% endblock %}
 
 {% block content %}
 {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'info_turma.css' %}">
-    <div class="info-turma">
-        <h1>{{ turma.nome }}</h1>
-        <p><strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
-        <p><strong>Dias da Semana:</strong> {{ turma.dias }}</p>
-        <p><strong>Professor Responsável:</strong> {{ turma.professor }}</p>
-    </div>
+<link rel="stylesheet" type="text/css" href="{% static 'info_turma.css' %}">
+<div class="info-turma">
+    <h1>{{ turma.nome }}</h1>
+    <br>
+    <p><strong>Professor Responsável:</strong> {{ turma.professor }}</p>
+    <p><strong>Dias da Semana:</strong> {{ turma.dias }} / <strong>Horário:</strong> {{ turma.horario_inicio }} - {{ turma.horario_fim }}</p>
 
-    <div class="alunos-turma">
-        <h2>Alunos Matriculados:</h2>
-        <ul>
-            {% for aluno in turma.alunos.all %}
-                <li>{{ aluno }}</li>
-            {% empty %}
-                <li>Nenhum aluno matriculado.</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'listar_turmas' %}">Voltar para a lista de turmas</a>
-    </div>
+</div>
+
+<div class="alunos-turma">
+    <h2>Alunos Vinculados:</h2>
+
+    <br><br><br>
+
+    {% if turma.alunos_turmas.all %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in turma.alunos_turmas.all %}
+                    <tr>
+                        <td>{{ aluno.nome_aluno }}</td>
+                        <td>{{ aluno.data_nascimento|date:"d/m/Y" }}</td>
+                        <td>{{ aluno.matricula|yesno:"Matriculado,Não Matriculado" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum aluno matriculado.</p>
+    {% endif %}
+
+</div>
 {% endblock %}
-
-

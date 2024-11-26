@@ -12,7 +12,7 @@
         justify-content: center;
         padding: 20px;
     }
-    
+
     .table {
         width: 100%;
         border-collapse: collapse;
@@ -43,16 +43,106 @@
         background-color: #fafafa;
     }
 
+    /* Estilo para a caixa de seleção */
+    .sort-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .sort-container select {
+        padding: 8px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .sort-container select:focus {
+        border-color: #4CAF50; /* Cor de borda ao focar */
+    }
+
+    /* Estilo para o botão "Enviar" */
+    .btn-enviar {
+        padding: 5px 10px;
+        background-color: #400559;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-enviar:hover {
+        background-color: #885b9b;
+    }
+
+    /* Estilo para os campos de notas editáveis */
+    .editable {
+        width: 80px;
+        padding: 5px;
+    }
+
+    /* Estilo para as informações do Simulado */
+    .info-simulado {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .info-simulado h1 {
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .info-simulado p {
+        font-size: 1.2em;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    .info-simulado strong {
+        color: #222;
+    }
+    
+    .info-simulado .label {
+        font-weight: 600;
+        color: #333;
+        text-transform: uppercase;
+    }
+
 </style>
 
 <div class="form-container">
     <div class="form-box">
-        <h1>{{ simulado.nome }}</h1>
-        <p><strong>Turma:</strong> {{ turma.nome }}</p>
-        <p><strong>Data e Hora do Simulado:</strong> {{ simulado.data_inicio }}</p>
-        
-        <!-- Formulário para salvar as notas dos alunos -->
-        <form method="POST" action="">
+        <div class="info-simulado">
+            <h1>{{ simulado.nome }}</h1>
+            <br>
+            <p><span class="label"><strong>{{ turma.nome }}</strong></span></p>
+            <p><span class="label"><strong>{{ simulado.data_inicio }}</strong></span></p>
+        </div>
+
+        <br><br>
+
+        <!-- Caixa de seleção para ordenar os alunos -->
+        <div class="sort-container">
+            <form method="GET" action="">
+                <label for="sort" style="margin-right: 10px;"><strong>Ordenar por:</strong></label>
+                <select name="sort" id="sort" onchange="this.form.submit()">
+                    <option value="alfabetica" {% if request.GET.sort == "alfabetica" %}selected{% endif %}>Alfabética</option>
+                    <option value="idade" {% if request.GET.sort == "idade" %}selected{% endif %}>Idade</option>
+                    <option value="ranking" {% if request.GET.sort == "ranking" %}selected{% endif %}>Ranking</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- Formulário para editar as notas dos alunos -->
+        <form method="POST" action="" id="form-notas">
             {% csrf_token %}
             <div class="table-container">
                 <table class="table">
@@ -61,6 +151,7 @@
                             <th>Nome dos Alunos</th>
                             <th>Nota</th>
                             <th>Ranking</th>
+                            <th>WhatsApp</th> <!-- Nova coluna para o WhatsApp -->
                         </tr>
                     </thead>
                     <tbody>
@@ -70,25 +161,62 @@
                                 <td>
                                     <!-- Campo editável para a nota -->
                                     {% if not todos_com_nota %}
-                                        <input type="number" name="notas_{{ resultado.aluno.id }}" value="{{ resultado.nota }}" step="0.01" min="0" max="10">
+                                        <input 
+                                            type="number" 
+                                            name="notas_{{ resultado.aluno.id }}" 
+                                            value="{{ resultado.nota }}" 
+                                            step="0.01" 
+                                            min="0" 
+                                            max="10"
+                                            class="editable"
+                                            {% if resultado.nota %}disabled{% endif %}
+                                        >
                                     {% else %}
                                         {{ resultado.nota }}
                                     {% endif %}
                                 </td>
                                 <td>{{ resultado.posicao }}</td>
+                                <td>
+                                    <!-- Botão "Enviar" -->
+                                    <button type="submit" class="btn-enviar" {% if resultado.nota == 0 %}disabled{% endif %}>Enviar</button>
+                                </td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td colspan="3">Nenhum aluno registrado para este simulado.</td>
+                                <td colspan="4">Nenhum aluno registrado para este simulado.</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+
             {% if not todos_com_nota %}
+                <!-- Botão Finalizar para submeter as notas -->
                 <button type="submit" name="finalizar" class="btn btn-primary">Finalizar</button>
             {% endif %}
         </form>
     </div>
 </div>
+
+<script>
+    // Função para ativar os campos de edição
+    document.getElementById('editar-btn')?.addEventListener('click', function() {
+        let inputs = document.querySelectorAll('.editable');
+        inputs.forEach(input => {
+            input.disabled = false; // Habilita os campos de nota
+        });
+        this.disabled = true; // Desabilita o botão "Editar" após ser clicado
+    });
+
+    // Função para enviar o formulário quando o usuário pressionar ENTER
+    document.querySelectorAll('.editable').forEach(input => {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evita o comportamento padrão de 'Enter' (ex: mudança de linha)
+                document.getElementById('form-notas').submit(); // Envia o formulário automaticamente
+            }
+        });
+    });
+</script>
+
 {% endblock %}
