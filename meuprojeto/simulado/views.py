@@ -63,26 +63,42 @@ def info_simulado(request, simulado_id):
     resultados = ResultadoSimulado.objects.filter(simulado=simulado)
     todos_com_nota = len(resultados) == alunos.count()
 
-    # Se todos os alunos tiverem nota, calcular o ranking
-    ranking_dict = {}
-    if todos_com_nota:
-        resultados_ordenados = sorted(resultados, key=lambda x: (-x.nota, x.aluno.data_nascimento))
-        for posicao, resultado in enumerate(resultados_ordenados, 1):
-            ranking_dict[resultado.aluno.id] = posicao
-
     # Processando o POST para salvar notas
     if request.method == 'POST':
-        # Iterar sobre cada aluno e atualizar as notas se fornecidas
         for aluno in alunos:
             nota = request.POST.get(f'notas_{aluno.id}')
-            if nota:
-                resultado = resultados.filter(aluno=aluno).first()
-                if resultado:
-                    resultado.nota = float(nota)  # Atualizando a nota
-                    resultado.save()
+            if nota and nota.strip():  # Verificar se a nota não é vazia
+                try:
+                    nota = float(nota)
+                    # Usando update_or_create para evitar problemas de campos obrigatórios
+                    ResultadoSimulado.objects.update_or_create(
+                        simulado=simulado,
+                        aluno=aluno,
+                        defaults={'nota': nota}
+                    )
+                except ValueError:
+                    pass  # Ignorar entradas inválidas
+            else:
+                # Apenas criar uma entrada se necessário, com valores válidos
+                ResultadoSimulado.objects.get_or_create(
+                    simulado=simulado,
+                    aluno=aluno,
+                    defaults={'nota': 0.0}  # Você pode definir um valor padrão, se necessário
+                )
 
-        # Redirecionar para a página de informações do simulado após salvar as alterações
+        # Atualizar os resultados após salvar as notas
+        resultados = ResultadoSimulado.objects.filter(simulado=simulado)
+        todos_com_nota = len(resultados) == alunos.count()
+
+        # Redirecionar para evitar reenvio de formulário
         return redirect('info_simulado', simulado_id=simulado.id)
+
+    # Calcular ranking se todos os alunos tiverem nota
+    ranking_dict = {}
+    if todos_com_nota:
+        resultados_ordenados = resultados.order_by('-nota', 'aluno__data_nascimento')
+        for posicao, resultado in enumerate(resultados_ordenados, 1):
+            ranking_dict[resultado.aluno.id] = posicao
 
     # Construir a lista de alunos com os resultados e o ranking
     alunos_com_resultados = []
@@ -101,6 +117,7 @@ def info_simulado(request, simulado_id):
         'todos_com_nota': todos_com_nota,
         'sort_option': sort_option
     })
+
 
 
 @login_required

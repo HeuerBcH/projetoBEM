@@ -1,11 +1,6 @@
 /* Centralizar o formulário na página */
 body {
     background-color: #a8a8a8;
-
-
-
-
-
 }
 .form-container {
     display: flex;

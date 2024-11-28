@@ -243,3 +243,21 @@ body {
 .navbar-actions .home-icon a:hover i {
     color: #DFC3FD; /* Cor ao passar o mouse */
 }
+
+.sidebar-logo {
+    display: none; /* Inicialmente, esconde a logo */
+    width: 100%; /* Garante que a logo ocupe toda a largura da sidebar */
+    text-align: center; /* Centraliza a imagem */
+    margin-top: auto; /* Empurra a logo para o final da sidebar */
+    padding-bottom: 20px; /* Espaço inferior para a logo não grudar na borda */
+}
+
+.sidebar.open .sidebar-logo {
+    display: block; /* Exibe a logo apenas quando a sidebar estiver aberta */
+}
+
+.sidebar-logo .logo-img {
+    max-width: 80%; /* Ajusta o tamanho da logo para caber dentro da sidebar */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
