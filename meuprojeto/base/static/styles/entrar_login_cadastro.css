@@ -6,7 +6,7 @@ body {
     height: 100vh; 
     margin: 0;
     font-family: 'Lexend', sans-serif; 
-    background-color: #F5F5F5; 
+    background-color: #b6b6b6; 
 }
 
 /* Estilo do contêiner */
@@ -21,7 +21,7 @@ body {
 .title {
     margin: 0; /* Remove a margem padrão */
     font-size: 5em; /* Tamanho fixo do título */
-    color: #807F81;
+    color: #400559;
     margin-bottom: 50px; /* Espaço abaixo do título */
 }
 
@@ -57,7 +57,7 @@ input:focus {
     padding: 10px 20px; /* Reduzindo o padding lateral */
     font-size: 1em; /* Diminuindo o tamanho da fonte */
     color: white; 
-    background-color: rgb(87, 86, 86);
+    background-color: #400559;
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -70,7 +70,7 @@ input:focus {
 }
 
 .btn:hover {
-    background-color: #0056b3; 
+    background-color: #DFC3FD; 
 }
 
 .btn-entrar {
@@ -90,7 +90,7 @@ input:focus {
 }
 
 .btn-entrar:hover {
-    background-color: #0056b3; 
+    background-color: #400559; 
 }
 
 /* Estilo da mensagem de alerta */
@@ -124,12 +124,12 @@ input:focus {
     height: 0;
     border-top: 10px solid transparent; 
     border-bottom: 10px solid transparent; 
-    border-right: 15px solid #808080; 
+    border-right: 15px solid #400559; 
     margin-left: 10px; 
     transition: border-color 0.3s ease; 
 }
 
 .back-btn:hover::before {
-    border-right-color: black; 
+    border-right-color: #DFC3FD; 
 }
 
