@@ -94,7 +94,7 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 
 ### 💻 Screencast Aplicação Web 02
-<a href="https://www.loom.com/share/46f9f57ad9b8419b8bec7c3fdf4083d7?sid=dedb3561-3674-447d-9048-db4e6c7be15e">
+<a href="https://drive.google.com/file/d/19VSn2HFmqWCZSZTSjtpQoGMCR1IPxPIJ/view?usp=drive_link">
   <img src="media/imagens/printBEM.PNG" width="450" />
 </a>
 
