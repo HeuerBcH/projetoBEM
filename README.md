@@ -67,7 +67,6 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 
 ## ✅ Status Report 1
 
-<h2><b>🎯 SPRINT 1</b></h2>
 
 
 ### 💻 Screencast Aplicação Web 01
@@ -92,8 +91,6 @@ Essa aplicação foi criada para atender às necessidades específicas do client
 <br>
 
 ## ✅ Status Report 2
-
-<h2><b>🎯 SPRINT 2</b></h2>
 
 
 ### 💻 Screencast Aplicação Web 02
